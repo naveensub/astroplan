@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Summer 2026 — Astrophysics Plan (Rising Senior)</title>
+<style>
+  /* ===== Base palette (stepper + header — stays cosmic dark) ===== */
+  :root {
+    --shell-bg: #0b1020;
+    --shell-card: #141a30;
+    --shell-text: #e8ecf8;
+    --shell-muted: #9aa6c2;
+    --shell-border: #233055;
+    --critical: #ff5e7e;
+
+    /* Per-tab themes — set dynamically via body[data-theme] */
+    --bg: #ffffff;
+    --bg-soft: #f6f7fb;
+    --card: #ffffff;
+    --card2: #f1f4fb;
+    --accent: #4a6cf7;
+    --accent2: #ff8a65;
+    --text: #1a1d2e;
+    --muted: #6b7390;
+    --border: #e3e7f2;
+    --good: #2ea66a;
+    --warn: #d97706;
+    --shadow: 0 4px 14px rgba(20,30,60,0.08);
+  }
+
+  /* ===== Tab themes — soft pastel palette (all light, cohesive) ===== */
+
+  /* Tab 0 — Why: Periwinkle Lavender */
+  body[data-theme="0"] {
+    --bg:#f3f1fc; --bg-soft:#e9e6f9; --card:#ffffff; --card2:#efecfb;
+    --accent:#7c6cf0; --accent2:#c2691f;
+    --text:#2a2547; --muted:#6b6590; --border:#dcd6f3;
+    --good:#3a9d6e; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(124,108,240,0.12);
+  }
+  /* Tab 1 — Do This Week: Peach Blush */
+  body[data-theme="1"] {
+    --bg:#fff3ee; --bg-soft:#ffe8df; --card:#ffffff; --card2:#fff0e9;
+    --accent:#ef7a63; --accent2:#b85e14;
+    --text:#4a2418; --muted:#9a6a58; --border:#fad4c4;
+    --good:#3a9d6e; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(239,122,99,0.14);
+  }
+  /* Tab 2 — Flagship: Mint Aqua */
+  body[data-theme="2"] {
+    --bg:#ecfaf6; --bg-soft:#dcf4ec; --card:#ffffff; --card2:#e4f7f1;
+    --accent:#2bb89a; --accent2:#b8801a;
+    --text:#143a32; --muted:#5e8a80; --border:#c4ebe0;
+    --good:#2ea66a; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(43,184,154,0.12);
+  }
+  /* Tab 3 — Academic: Butter Cream */
+  body[data-theme="3"] {
+    --bg:#fdf9ec; --bg-soft:#faf2d8; --card:#ffffff; --card2:#fbf5e2;
+    --accent:#c79a2e; --accent2:#b56a28;
+    --text:#3d300f; --muted:#8a7848; --border:#ecdeb4;
+    --good:#3a9d6e; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(199,154,46,0.12);
+  }
+  /* Tab 4 — Local & Free: Sage Green */
+  body[data-theme="4"] {
+    --bg:#eef6ee; --bg-soft:#e0efe0; --card:#ffffff; --card2:#e7f2e7;
+    --accent:#5aa86e; --accent2:#b07d1c;
+    --text:#1f3a26; --muted:#647c68; --border:#cfe5cf;
+    --good:#2ea66a; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(90,168,110,0.12);
+  }
+  /* Tab 5 — College Apps: Powder Sky */
+  body[data-theme="5"] {
+    --bg:#eef4fd; --bg-soft:#e0ecfb; --card:#ffffff; --card2:#e8f1fd;
+    --accent:#4a82d6; --accent2:#c2691f;
+    --text:#19294a; --muted:#5e6f92; --border:#cdddf5;
+    --good:#3a9d6e; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(74,130,214,0.12);
+  }
+  /* Tab 6 — Checklist: Soft Teal Mint */
+  body[data-theme="6"] {
+    --bg:#ecf7f6; --bg-soft:#daf0ee; --card:#ffffff; --card2:#e3f4f2;
+    --accent:#3bb3ad; --accent2:#b0801c;
+    --text:#143a38; --muted:#5e8884; --border:#c4e8e4;
+    --good:#2ea66a; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(59,179,173,0.12);
+  }
+  /* Tab 7 — Notes: Lilac */
+  body[data-theme="7"] {
+    --bg:#f7f0fb; --bg-soft:#efe2f7; --card:#ffffff; --card2:#f2e8f8;
+    --accent:#a05cd6; --accent2:#1f7d6b;
+    --text:#341a4a; --muted:#74608a; --border:#e4d2ef;
+    --good:#2ea66a; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(160,92,214,0.12);
+  }
+  /* Tab 8 — Around the Country: Cornflower Sky */
+  body[data-theme="8"] {
+    --bg:#eef2fd; --bg-soft:#e1e8fb; --card:#ffffff; --card2:#e9eefc;
+    --accent:#5b78e0; --accent2:#b0801c;
+    --text:#1c2547; --muted:#62709a; --border:#d0d9f5;
+    --good:#2ea66a; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(91,120,224,0.12);
+  }
+
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+  .wrap {
+    max-width: min(1600px, 95vw);
+    margin: 0 auto;
+    padding: clamp(12px, 2.5vw, 32px);
+  }
+
+  /* Header & stepper always cosmic-dark for stable navigation feel */
+  header {
+    text-align: center;
+    padding: clamp(16px, 3vw, 32px);
+    margin-bottom: clamp(16px, 2.5vw, 28px);
+    background: linear-gradient(180deg, #050816 0%, #0b1020 100%);
+    color: var(--shell-text);
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+  h1 {
+    font-size: clamp(1.4em, 3.2vw, 2.2em);
+    margin: 0 0 8px;
+    background: linear-gradient(90deg, #7cc4ff, #ffd166, #ff8a65);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle { color: var(--shell-muted); font-size: 1em; margin: 4px 0; }
+  .urgency-banner {
+    background: linear-gradient(90deg, rgba(255,94,126,0.18), rgba(255,209,102,0.15));
+    border: 1px solid var(--critical);
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin: 16px auto 0;
+    max-width: 720px;
+    color: var(--shell-text);
+    font-size: 0.95em;
+  }
+  .urgency-banner strong { color: var(--critical); }
+
+  /* Version + changelog */
+  .version-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; margin-top: 14px; flex-wrap: wrap;
+  }
+  .version-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.06);
+    color: var(--shell-text);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 999px; padding: 4px 12px;
+    font-size: 0.82em; font-family: ui-monospace, Consolas, monospace;
+  }
+  .version-tag .dot { width:8px; height:8px; border-radius:50%; background:#5fd49a; box-shadow:0 0 6px #5fd49a; }
+  .changelog-toggle {
+    background: transparent; color: var(--shell-muted);
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.82em; cursor: pointer; font-family: inherit;
+  }
+  .changelog-toggle:hover { color: var(--shell-text); border-color: rgba(255,255,255,0.35); }
+  .changelog-panel {
+    display: none;
+    text-align: left; max-width: 720px; margin: 16px auto 0;
+    background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; padding: 14px 18px;
+    color: var(--shell-text); font-size: 0.88em;
+  }
+  .changelog-panel.open { display: block; }
+  .changelog-panel h4 {
+    margin: 0 0 4px; color: #ffd166; font-size: 0.95em;
+    display: flex; gap: 10px; align-items: baseline;
+  }
+  .changelog-panel h4 .when { color: var(--shell-muted); font-weight: 400; font-size: 0.85em; }
+  .changelog-panel ul { margin: 4px 0 14px; padding-left: 22px; }
+  .changelog-panel li { margin: 2px 0; color: #d4daec; }
+  .changelog-panel .entry:last-child ul { margin-bottom: 0; }
+
+  .stepper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    align-items: stretch;
+    background: var(--shell-card);
+    color: var(--shell-text);
+    border-radius: 12px;
+    padding: clamp(10px, 1.5vw, 16px);
+    margin-bottom: clamp(16px, 2.5vw, 28px);
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  }
+  .stepper-item {
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 6px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    color: var(--shell-muted);
+    font-size: clamp(0.72em, 0.85vw, 0.9em);
+  }
+  .stepper-item:hover { background: #1f2a4d; color: var(--shell-text); }
+  .stepper-item.active {
+    background: linear-gradient(135deg, #1e2a52, #2a3a72);
+    color: var(--shell-text);
+  }
+  /* Per-step accent pip — gives each tab a personality even when inactive */
+  .stepper-num {
+    display: block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    color: #ffffff;
+    margin: 0 auto 6px;
+    font-weight: bold;
+  }
+  .stepper-item[data-tab="0"] .stepper-num { background: #7c6cf0; }
+  .stepper-item[data-tab="1"] .stepper-num { background: #ef7a63; }
+  .stepper-item[data-tab="2"] .stepper-num { background: #2bb89a; }
+  .stepper-item[data-tab="3"] .stepper-num { background: #c79a2e; }
+  .stepper-item[data-tab="4"] .stepper-num { background: #5aa86e; }
+  .stepper-item[data-tab="5"] .stepper-num { background: #4a82d6; }
+  .stepper-item[data-tab="6"] .stepper-num { background: #3bb3ad; }
+  .stepper-item[data-tab="7"] .stepper-num { background: #a05cd6; }
+  .stepper-item[data-tab="8"] .stepper-num { background: #5b78e0; }
+  .stepper-item.active .stepper-num {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
+  }
+  .stepper-item.done .stepper-num { background: #5fd49a !important; color: #0b1020; }
+  .stepper-item.done .stepper-num::before { content: "✓"; }
+  .stepper-item.done .stepper-num span { display: none; }
+
+  /* Tab content — themed per data-theme on body */
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .tab-header {
+    background: var(--card);
+    border-radius: 14px 14px 0 0;
+    padding: clamp(14px, 2vw, 24px) clamp(16px, 2.5vw, 30px);
+    border-left: 4px solid var(--accent);
+    box-shadow: var(--shadow);
+  }
+  .tab-header h2 {
+    margin: 0 0 6px;
+    color: var(--accent);
+    font-size: clamp(1.15em, 2vw, 1.6em);
+  }
+  .tab-header .tab-meta { color: var(--muted); font-size: 0.92em; }
+  .tab-body {
+    background: var(--card);
+    border-radius: 0 0 14px 14px;
+    padding: clamp(16px, 2.5vw, 30px);
+    margin-bottom: clamp(16px, 2.5vw, 28px);
+    border-left: 4px solid var(--accent);
+    box-shadow: var(--shadow);
+  }
+  h3 {
+    color: var(--accent2);
+    margin-top: 26px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  h3:first-child { margin-top: 0; }
+
+  .item {
+    background: var(--card2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    border-left: 3px solid var(--accent);
+  }
+  .item.priority { border-left-color: var(--good); }
+  .item.stretch { border-left-color: var(--accent2); }
+  .item.critical { border-left-color: var(--critical); }
+  .item-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 1.05em;
+    margin-bottom: 8px;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+    font-size: 0.85em;
+  }
+  .badge {
+    background: var(--bg-soft);
+    color: var(--text);
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .badge.cost-free { background: rgba(94,212,154,0.18); color: var(--good); border-color: var(--good); }
+  .badge.cost-low  { background: rgba(124,196,255,0.15); color: var(--accent); border-color: var(--accent); }
+  .badge.cost-high { background: rgba(217,119,6,0.18); color: var(--warn); border-color: var(--warn); }
+  .badge.urgent    { background: rgba(255,94,126,0.18); color: var(--critical); border-color: var(--critical); }
+  a { color: var(--accent); text-decoration: none; word-break: break-word; font-weight: 600; }
+  a:hover { text-decoration: underline; }
+  code {
+    background: var(--bg-soft);
+    color: var(--accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid var(--border);
+  }
+  .why {
+    background: var(--bg-soft);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.92em;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+  }
+  .why strong { color: var(--text); }
+  .actions {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+  .actions ol { padding-left: 20px; margin: 6px 0; }
+  .actions li { margin: 3px 0; }
+
+  /* Nav buttons */
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .nav-btn {
+    flex: 1;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    font-weight: 500;
+  }
+  .nav-btn:hover { background: var(--bg-soft); border-color: var(--accent); }
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav-btn.next {
+    background: var(--accent);
+    color: var(--card);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+  .nav-btn.next:hover { filter: brightness(1.1); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.92em;
+    background: var(--card2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th {
+    color: var(--accent);
+    background: var(--bg-soft);
+    font-weight: 700;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  .checklist label {
+    display: block;
+    padding: 8px 0;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+  }
+  .checklist label:last-child { border-bottom: none; }
+  .checklist input { margin-right: 10px; transform: scale(1.2); accent-color: var(--accent); }
+
+  textarea.note-box {
+    width: 100%;
+    min-height: 90px;
+    background: var(--bg-soft);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 0.95em;
+    line-height: 1.5;
+    resize: vertical;
+    margin-bottom: 8px;
+  }
+  textarea.note-box:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(124,58,237,0.2);
+  }
+  textarea.note-box::placeholder { color: var(--muted); opacity: 0.7; }
+
+  .callout {
+    background: linear-gradient(135deg,
+      color-mix(in srgb, var(--accent) 12%, transparent),
+      color-mix(in srgb, var(--accent2) 8%, transparent));
+    border-left: 3px solid var(--accent2);
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin: 14px 0;
+    color: var(--text);
+  }
+  .callout strong { color: var(--accent2); }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85em;
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 700px) {
+    .stepper { grid-template-columns: repeat(4, 1fr); }
+    .stepper-num { width: 28px; height: 28px; line-height: 28px; font-size: 0.9em; }
+    h1 { font-size: 1.4em; }
+    .nav-buttons { flex-direction: column; }
+    .nav-btn { padding: 12px 16px; }
+    table { font-size: 0.85em; }
+    th, td { padding: 8px 6px; }
+  }
+  @media (max-width: 480px) {
+    .stepper { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+    .stepper-item { font-size: 0.78em; padding: 8px 4px; }
+    .cal-day { min-height: 50px; }
+    .cal-chip { display: none; }
+    .cal-more { display: none; }
+  }
+  @media (min-width: 1400px) {
+    .tab-body { font-size: 1.02em; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>🔭 Summer 2026 — Astrophysics Plan</h1>
+  <p class="subtitle">Rising senior · Austin, TX · Aiming for top astrophysics programs</p>
+  <p class="subtitle"><em>Prepared May 23, 2026</em></p>
+  <div class="urgency-banner">
+    <strong>⚠️ This is THE summer that matters for college apps.</strong> Common App opens Aug 1. Early Decision deadlines are Nov 1, 2026. Whatever you build this summer becomes the headline of your application. Choose <em>impact</em> over <em>busy work</em>.
+  </div>
+  <div class="version-row">
+    <span class="version-tag" id="version-tag"><span class="dot"></span> <span id="version-num">v1.1</span> · <span id="version-date">updated May 24, 2026</span></span>
+    <button class="changelog-toggle" id="changelog-toggle" type="button">📜 What changed?</button>
+  </div>
+  <div class="changelog-panel" id="changelog-panel"></div>
+</header>
+
+<!-- STEPPER -->
+<div class="stepper" id="stepper">
+  <div class="stepper-item active" data-tab="0">
+    <span class="stepper-num"><span>0</span></span>
+    Why This Plan
+  </div>
+  <div class="stepper-item" data-tab="1">
+    <span class="stepper-num"><span>1</span></span>
+    Do Now
+  </div>
+  <div class="stepper-item" data-tab="2">
+    <span class="stepper-num"><span>2</span></span>
+    Flagship + Academic
+  </div>
+  <div class="stepper-item" data-tab="3">
+    <span class="stepper-num"><span>3</span></span>
+    Self-Study
+  </div>
+  <div class="stepper-item" data-tab="4">
+    <span class="stepper-num"><span>4</span></span>
+    Local & Free
+  </div>
+  <div class="stepper-item" data-tab="5">
+    <span class="stepper-num"><span>5</span></span>
+    Fall College Apps
+  </div>
+  <div class="stepper-item" data-tab="6">
+    <span class="stepper-num"><span>6</span></span>
+    Checklist
+  </div>
+  <div class="stepper-item" data-tab="7">
+    <span class="stepper-num"><span>7</span></span>
+    My Notes
+  </div>
+  <div class="stepper-item" data-tab="8">
+    <span class="stepper-num"><span>8</span></span>
+    Around the Country
+  </div>
+</div>
+
+<!-- TAB 0: WHY -->
+<div class="tab-content active" id="tab-0">
+  <div class="tab-header">
+    <h2>🎯 Why This Plan Is Different (Rising Senior Edition)</h2>
+    <p class="tab-meta">Read this first — it shapes every decision below.</p>
+  </div>
+  <div class="tab-body">
+    <h3>The 3 things that matter this summer</h3>
+    <ol>
+      <li><strong>A research or scholarly artifact</strong> you can name on the Common App ("I conducted X on Y under Dr. Z, producing a paper/poster/dataset/code")</li>
+      <li><strong>1–2 strong recommenders</strong> who can write specifically about your astrophysics ability — usually a mentor, course instructor, or research advisor.</li>
+      <li><strong>Demonstrated college-level rigor</strong> — a transcripted college astronomy course or equivalent passes the "can he handle this major?" sniff test.</li>
+    </ol>
+
+    <h3>What does NOT matter much at this stage</h3>
+    <ul>
+      <li>Auditing free MOOCs (no proof of completion, no credential).</li>
+      <li>"Attended a 1-week summer camp" without an output.</li>
+      <li>Long lists of activities with no depth.</li>
+    </ul>
+
+    <h3>The realistic playbook</h3>
+    <div class="callout">
+      Pick <strong>ONE flagship summer commitment</strong> that produces an artifact + recommender (Tab 2). Layer <strong>ONE academic course</strong> for transcripted rigor (Tab 3). Use <strong>local + free</strong> activities (Tab 4) as supporting evidence of genuine interest. Then in August, turn everything into <strong>college app material</strong> (Tab 5).
+    </div>
+
+    <h3>Quick comparison to the Cornell course you applied to</h3>
+    <table>
+      <tr><th>Option</th><th>Cost</th><th>Produces?</th><th>App value</th></tr>
+      <tr><td>Cornell ASTRO 1106 (Precollege)</td><td>~$5,895</td><td>3 Cornell credits on transcript</td><td>Strong — Ivy precollege credential</td></tr>
+      <tr><td>ASU AST 111 + Lumiere Individual research</td><td>~$3,725</td><td>3 ASU credits + research paper</td><td><strong>Stronger</strong> — credits PLUS an artifact (see Tab 2 Option A)</td></tr>
+      <tr><td>ASU AST 112 only</td><td>~$425</td><td>4 ASU credits</td><td>Decent — shows rigor</td></tr>
+    </table>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" disabled>← Previous</button>
+    <button class="nav-btn next" onclick="goTab(1)">Next: Do Now →</button>
+  </div>
+</div>
+
+<!-- TAB 1: DO THIS WEEK -->
+<div class="tab-content" id="tab-1">
+  <div class="tab-header">
+    <h2>🟢 Do Now — Action List (as of June 3)</h2>
+    <p class="tab-meta">Updated for the current timeline. Time-sensitive items are flagged — IASC and AST 111 have hard dates.</p>
+  </div>
+  <div class="tab-body">
+
+    <div class="callout">
+      <strong>📍 Where things stand:</strong> Lumiere is the chosen flagship (Option A) — awaiting their next-steps email (~1 week). Common App account is done. The two clock-driven items now are <strong>AST 111 enrollment</strong> (start a session by ~June 7) and <strong>IASC asteroid hunt registration</strong> (campaign June 10–July 6). UT cold emails remain the one thing that could change the flagship decision.
+    </div>
+
+    <div class="item priority">
+      <div class="item-title">1. ⏰ Register for the IASC Asteroid Hunt — <span style="color:var(--warn)">before June 10</span></div>
+      <div class="meta">
+        <span class="badge cost-low">~$30</span>
+        <span class="badge">Online · June 10 – July 6</span>
+        <span class="badge urgent">TIME-SENSITIVE</span>
+      </div>
+      <p>Free flagship that <em>stacks</em> with Lumiere — real Minor Planet Center discovery credit becomes a Common App activity line. Lock this regardless of how Lumiere/UT play out. (Details in Tab 8.)</p>
+      <div class="actions">
+        <strong>Link:</strong> <a href="http://iasc.cosmosearch.org">iasc.cosmosearch.org</a>
+      </div>
+    </div>
+
+    <div class="item priority">
+      <div class="item-title">2. ⏰ Enroll in ASU AST 111 — <span style="color:var(--warn)">session starting ≤ June 7</span></div>
+      <div class="meta">
+        <span class="badge cost-low">$25 enroll · ~$400 credit</span>
+        <span class="badge">3 transferable credits</span>
+        <span class="badge urgent">TIME-SENSITIVE</span>
+      </div>
+      <p>Pick a session that starts soon enough to finish before Aug 15 (so the grade/transcript is usable for fall apps). This is the transcripted-rigor half of the plan. (Full details in Tab 2 → Academic Core.)</p>
+      <div class="actions">
+        <strong>Link:</strong> <a href="https://ea.asu.edu">ea.asu.edu</a> — search <code>AST 111</code>
+      </div>
+    </div>
+
+    <div class="item priority">
+      <div class="item-title">3. 🎯 Send a 2nd round of UT Austin cold emails — <span style="color:var(--warn)">the decision-changer</span></div>
+      <div class="meta">
+        <span class="badge cost-free">FREE</span>
+        <span class="badge">High effort, high reward</span>
+      </div>
+      <p>Still the single thing that could beat any paid program. A "yes" from a UT prof → free in-state lab credential → don't pay for Lumiere. Don't close this door while Lumiere's email is pending.</p>
+      <div class="callout">
+        <strong>Template:</strong> Read 1 recent paper per professor (UT Astronomy faculty → arXiv). Email 3–4 sentences: who you are, that you read their paper on X, one specific question, an offer to volunteer 10 hrs/week through August. Attach a 1-page resume.
+      </div>
+      <div class="actions">
+        <strong>UT faculty list:</strong> <a href="https://astronomy.utexas.edu/people/faculty">astronomy.utexas.edu/people/faculty</a>
+      </div>
+    </div>
+
+    <div class="item priority">
+      <div class="item-title">4. 📧 Respond to Lumiere when their email lands (~1 week)</div>
+      <div class="meta">
+        <span class="badge cost-high">$3,300 base</span>
+        <span class="badge">Awaiting mentor match + start date</span>
+      </div>
+      <p>When it arrives: confirm mentor match, start date, and a deliverable timeline that finishes the paper by mid-August. Use the <strong>"Questions to ask Lumiere"</strong> list in Tab 2 (push on aid + price-match; don't commit until you've seen the mentor profile).</p>
+      <div class="actions">
+        <strong>Link:</strong> <a href="https://www.lumiere-education.com">lumiere-education.com</a>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-title">5. Set up free accounts now (stack alongside the flagship)</div>
+      <div class="meta">
+        <span class="badge cost-free">FREE</span>
+        <span class="badge">5 min each</span>
+      </div>
+      <p>AAVSO observer account · Zooniverse (Galaxy Zoo / Planet Hunters TESS) · Teen Astronomy Café (UT/McDonald). All free, all become supporting "genuine interest" evidence. (See Tabs 4 &amp; 8.)</p>
+      <div class="actions">
+        <strong>Links:</strong> <a href="https://www.aavso.org">aavso.org</a> · <a href="https://www.zooniverse.org">zooniverse.org</a> · <a href="https://teenastronomycafe.org">teenastronomycafe.org</a>
+      </div>
+    </div>
+
+    <div class="item" style="opacity:0.7">
+      <div class="item-title">✅ DONE — Common App account created</div>
+      <div class="meta">
+        <span class="badge" style="background:rgba(94,212,154,0.18); color:var(--good); border-color:var(--good);">Completed</span>
+        <span class="badge">Opens Aug 1, 2026</span>
+      </div>
+      <p>Next: populate the activities list once the flagship + ASU course are underway. Everything this summer feeds activities/essays.</p>
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goTab(0)">← Why This Plan</button>
+    <button class="nav-btn next" onclick="goTab(2)">Next: Pick a Flagship →</button>
+  </div>
+</div>
+
+<!-- TAB 2: FLAGSHIP + ACADEMIC CORE (merged in v1.1) -->
+<div class="tab-content" id="tab-2">
+  <div class="tab-header">
+    <h2>🟡 Flagship + Academic Core</h2>
+    <p class="tab-meta">Pick ONE flagship project (top section) AND lock in the academic backbone (bottom section). Together = the centerpiece of his college app.</p>
+  </div>
+  <div class="tab-body">
+
+    <div class="callout">
+      <strong>Why "pick one":</strong> Admissions officers reward depth over breadth. One serious commitment with a tangible output beats three half-finished things.
+    </div>
+
+    <div class="item priority">
+      <div class="item-title">Option A — Lumiere Individual Research Program ⭐ RECOMMENDED (spoke June 3 — now the front-runner)</div>
+      <div class="meta">
+        <span class="badge cost-high">$3,300 (base / Individual)</span>
+        <span class="badge">Online 1:1 · ~12 sessions · ~12–16 weeks</span>
+        <span class="badge">Produces a research paper</span>
+        <span class="badge urgent">UPDATED JUNE 3</span>
+      </div>
+      <p>1:1 mentorship with a <strong>PhD researcher from a top university</strong> (Lumiere was co-founded out of Harvard/Oxford and recruits mentors from programs like Harvard, Stanford, Oxford, MIT). He'll design and execute an astrophysics project ending in a research paper. We chose the <strong>base Individual program at $3,300</strong> — no UC San Diego credit add-on.</p>
+      <div class="why">
+        <strong>Why Lumiere over Polygence (your read from the call):</strong> (1) <strong>~$900 cheaper</strong> than Polygence Core Basic ($3,300 vs $4,200), (2) <strong>more prestigious mentor pool</strong> — PhDs from top global universities, (3) <strong>better astrophysics fit</strong> — they spoke to matching a mentor to his specific interest. Same core deliverables as Polygence: a paper, a recommender LOR, interview/essay material.
+      </div>
+      <p style="margin:6px 0"><strong>Status:</strong> they said you'll hear back in <strong>~1 week with next steps</strong> (mentor match + start date). No deposit committed yet. Start dates are on a rolling cohort basis — confirm his when they follow up.</p>
+      <p style="margin:6px 0; color:var(--warn)"><strong>⚠️ Still keep two things alive while you wait:</strong> (1) the <strong>UT cold-email</strong> thread — a free UT astronomy lab still beats any paid program if a prof says yes; (2) lock the free <strong>IASC asteroid hunt</strong> (June 10–July 6, ~$30) regardless — it stacks nicely alongside Lumiere as a second Common App line.</p>
+      <div class="actions" style="margin-top:14px">
+        <strong>Action this week:</strong>
+        <ol>
+          <li>Wait for Lumiere's next-steps email (~1 week); when it lands, confirm <strong>mentor match + start date + exact deliverable timeline</strong> (paper finished by ~mid-August for fall apps).</li>
+          <li>Ask whether <strong>need-based aid</strong> applies to the $3,300 (can't hurt).</li>
+          <li>Send the <strong>2nd round of UT cold emails</strong> — don't close that door yet.</li>
+          <li>Register for <strong>IASC</strong> (free flagship, stacks with Lumiere).</li>
+        </ol>
+      </div>
+      <div class="actions">
+        <strong>Link:</strong> <a href="https://www.lumiere-education.com">lumiere-education.com</a>
+      </div>
+
+      <details style="margin-top:16px; background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:4px 16px;">
+        <summary style="cursor:pointer; font-weight:700; color:var(--accent2); padding:10px 0; list-style:none;">📋 Questions to ask Lumiere (click to expand)</summary>
+        <div style="padding:4px 0 14px;">
+          <p style="margin:6px 0; color:var(--muted)"><em>Send in one email or work through on the follow-up call. Lead with aid + competitive-offer (your biggest price levers), and don't commit until you've seen the mentor profile.</em></p>
+
+          <p style="margin:12px 0 4px; font-weight:700; color:var(--accent2)">💰 Cost / getting the price down</p>
+          <ol style="margin:4px 0">
+            <li>Is <strong>$3,300 your best price</strong>, or is there room? Any current <strong>promotions, seasonal, or sibling/referral discounts</strong>?</li>
+            <li>Do you offer <strong>need-based financial aid</strong>? What's the process, what docs (FAFSA/AGI), and what discount range do families typically see?</li>
+            <li>Any <strong>merit / academic-profile discount</strong> (strong GPA, scores, demonstrated research interest)?</li>
+            <li>Does <strong>paying in full upfront vs. installments</strong> change the price?</li>
+            <li>Is there a <strong>lower-cost tier</strong> (group/cohort) that still produces a paper + mentor LOR? What exactly is lost vs. the $3,300 Individual?</li>
+            <li>Any <strong>add-on fees</strong> beyond $3,300 (publication, extensions, materials, UCSD credit)? I want the true all-in number.</li>
+            <li style="color:var(--warn)"><strong>Price-match:</strong> "We're also considering Polygence at a comparable price — is there anything you can do on cost or scope to make the decision easier?"</li>
+          </ol>
+
+          <p style="margin:12px 0 4px; font-weight:700; color:var(--accent2)">🎓 Mentor &amp; academic fit</p>
+          <ol style="margin:4px 0" start="8">
+            <li>How is the mentor matched? Can we <strong>see the mentor's profile / background / publications before committing</strong>?</li>
+            <li>Can we <strong>request an astrophysics specialization</strong> (black holes, exoplanets, observational/data analysis)?</li>
+            <li>If the mentor isn't a good fit, can we <strong>request a re-match</strong> — any cost or delay?</li>
+            <li>What's the mentor's <strong>institution and degree level</strong> (PhD candidate vs. completed PhD — affects LOR weight)?</li>
+          </ol>
+
+          <p style="margin:12px 0 4px; font-weight:700; color:var(--accent2)">📅 Timeline &amp; deliverables</p>
+          <ol style="margin:4px 0" start="12">
+            <li>Exact <strong>start date and weekly cadence</strong>? Can the paper be <strong>finished by mid-August</strong> for fall apps?</li>
+            <li>Concrete <strong>final deliverable</strong> — page length, format — and does the mentor help with <strong>revisions/editing</strong>?</li>
+            <li>Will the mentor write a <strong>recommendation letter</strong> — included or extra? Any conditions?</li>
+            <li>What <strong>publication or showcase options</strong> are in the base $3,300? Can he self-submit to JEI/Curieux without paying more?</li>
+          </ol>
+
+          <p style="margin:12px 0 4px; font-weight:700; color:var(--accent2)">📈 Outcomes &amp; logistics</p>
+          <ol style="margin:4px 0" start="16">
+            <li>What if he <strong>falls behind or needs to pause</strong> (school starts)? Extension policy?</li>
+            <li><strong>Refund / cancellation policy</strong> if it's not working early on?</li>
+            <li>Roughly how many of your <strong>astrophysics students complete a paper</strong>, and any past project examples?</li>
+            <li>Expected <strong>weekly time commitment</strong> (so we can plan around AST 111 + Python)?</li>
+          </ol>
+
+          <p style="margin:12px 0 4px; font-weight:700; color:var(--good)">⭐ Ask these first</p>
+          <p style="margin:4px 0"><strong>#2</strong> (need-based aid) and <strong>#7</strong> (competitive/price-match) are your biggest levers to get under $3,300. <strong>#8/#9</strong> (see the mentor before committing) protects against the #1 way these programs disappoint. Keep the free <strong>UT cold-email</strong> fallback in your back pocket — no need to mention it to Lumiere.</p>
+        </div>
+      </details>
+    </div>
+
+    <h3>⚖️ Lumiere vs Polygence — head-to-head</h3>
+    <table>
+      <tr><th>Dimension</th><th>⭐ Lumiere (Individual)</th><th>Polygence (Core Basic)</th></tr>
+      <tr><td><strong>Base cost</strong></td><td><strong>$3,300</strong></td><td>$4,200 (à la carte $3,200 / Essential $5,150)</td></tr>
+      <tr><td><strong>Format</strong></td><td>1:1 PhD mentor, ~12 sessions, ~12–16 wks</td><td>1:1 mentor, 13 sessions + project manager</td></tr>
+      <tr><td><strong>Mentor pedigree</strong></td><td>PhDs from top global universities (Harvard / Stanford / Oxford / MIT pool) — more selective</td><td>PhD &amp; grad-student mentors from strong schools — broader pool</td></tr>
+      <tr><td><strong>Output</strong></td><td>Research paper + recommender LOR</td><td>Research paper + showcase + recommender LOR</td></tr>
+      <tr><td><strong>Publication path</strong></td><td>Via higher tiers; base = paper (can self-submit to JEI free)</td><td>Core Essential ($5,150) actively pushes journal submission</td></tr>
+      <tr><td><strong>College credit option</strong></td><td>Optional UC San Diego credit add-on (extra cost — <em>not</em> taken)</td><td>Optional UC Irvine 3 credits (Core only, cost TBD)</td></tr>
+      <tr><td><strong>College-app weight</strong></td><td colspan="2" style="text-align:left">≈ <strong>Equivalent.</strong> Both give the same three things admissions actually use: an activity-list line, a mentor LOR, and personal/supplemental-essay material. <strong>Neither is a guaranteed edge</strong> — both run on selection-biased marketing stats. At UT Austin specifically, paid research barely moves the needle (~1.1×). The value is the <em>artifact + narrative</em>, not the brand.</td></tr>
+      <tr><td><strong>Prestige signal</strong></td><td>Slightly stronger — markets Ivy/Oxbridge-affiliated mentors &amp; selectivity</td><td>More accessible / higher volume</td></tr>
+      <tr><td><strong>Financial aid</strong></td><td>Need-based available — ask</td><td>Need-based available (sometimes 30–50% off)</td></tr>
+      <tr><td><strong>Astrophysics fit</strong></td><td>They discussed matching mentor to his specific interest</td><td>Depends on who you're matched with</td></tr>
+      <tr style="background:color-mix(in srgb, var(--good) 12%, transparent)"><td><strong>Verdict</strong></td><td colspan="2" style="text-align:left"><strong>Lumiere wins on cost (−$900), mentor prestige, and fit</strong> — for an equivalent college-app outcome. The one thing that still beats both: a <strong>free UT faculty lab</strong> (Option C). Lock Lumiere only after the UT thread resolves.</td></tr>
+    </table>
+
+    <details style="margin-top:18px; background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:4px 16px;">
+      <summary style="cursor:pointer; font-weight:700; color:var(--accent2); padding:10px 0; list-style:none;">📂 Other flagship options — B: Polygence (the alternative) · Pioneer · C: UT lab · D: McDonald / citizen science (click to expand)</summary>
+      <div style="padding:4px 0 8px;">
+
+    <div class="item">
+      <div class="item-title">Option B — Polygence 1:1 Research Mentorship (the alternative — full breakdown kept for comparison)</div>
+      <p style="margin:6px 0; color:var(--muted)"><em>Polygence was the original front-runner; Lumiere now edges it out on cost + prestige + fit (see table above). Keeping the full Polygence analysis here so the comparison is transparent and as a backup if the Lumiere mentor match disappoints.</em></p>
+      <div class="meta">
+        <span class="badge cost-high">$3,200 – $5,150</span>
+        <span class="badge">Online · 8–16 sessions · 3–6 months</span>
+        <span class="badge">Produces a research paper</span>
+        <span class="badge urgent">PRICING UPDATED MAY 28</span>
+      </div>
+      <p>Paired with a PhD-level mentor (often from MIT, Stanford, Caltech, U of A). Design and execute an astrophysics project. Output: a paper potentially publishable in JEI (Journal of Emerging Investigators), STEM Fellowship, or as a preprint.</p>
+      <div class="why">
+        <strong>Why this is recommended:</strong> Produces (1) an artifact for the Common App, (2) a recommender LOR, (3) something to talk about in interviews, and (4) optionally a published paper. Need-based scholarships available — ask up front.
+      </div>
+
+      <h4 style="margin-top:18px; margin-bottom:6px; color:var(--accent2)">💰 Real Pricing (3 tiers — not the ~$2,800 originally quoted)</h4>
+      <table>
+        <tr><th>Tier</th><th>Price</th><th>Sessions</th><th>What's <em>really</em> different</th></tr>
+        <tr><td><strong>À la carte</strong></td><td>$3,200</td><td>~8 (1 hr each)</td><td>Just the mentor hours. <em>No</em> project manager, <em>no</em> editing help, <em>no</em> publication push, <em>no</em> symposium.</td></tr>
+        <tr><td><strong>Core Basic</strong> ⭐</td><td>$4,200</td><td>13</td><td>Mentor hours + project manager keeping you on track + research showcase. <em>No</em> publishing support.</td></tr>
+        <tr><td><strong>Core Essential</strong></td><td>$5,150</td><td>16</td><td>Above + writing coach revising the paper + active push to submit to journal (JEI, Curieux) + presentation coaching.</td></tr>
+      </table>
+      <p style="color:var(--muted); font-size:0.92em; margin-top:6px"><strong>Per-hour math:</strong> ~$320–$400/hr across all tiers — roughly Stanford/MIT PhD tutoring rates. Not crazy, not a bargain.</p>
+
+      <h4 style="margin-top:18px; margin-bottom:6px; color:var(--accent2)">🎓 UC Irvine Credit Add-On (Core only — not à la carte)</h4>
+      <p style="margin:6px 0">Polygence partners with <strong>UC Irvine's GATI institute</strong> to turn the Core research paper into <strong>3 transferable UC Irvine credits + an official UC transcript</strong>. Also qualifies as a <strong>"pre-collegiate program"</strong> on the Common App, and includes UCI library access.</p>
+      <p style="margin:6px 0"><strong>Eligibility:</strong> GPA ≥ 3.3 · enrolled in Polygence <strong>Core</strong> · paper 7–12 pages · grade C or better. &nbsp; <strong>Extra work:</strong> 9 UCI writing modules + a source-annotation assignment + draft &amp; final by cohort deadline. Cohorts run Spring/Summer/Fall/Winter (flexible — can extend into fall).</p>
+      <p style="margin:6px 0"><strong>Why it matters:</strong> this is the strongest reason to pick <strong>Core over à la carte</strong> — the same paper now also produces a transcripted UC credential, not just mentor hours.</p>
+      <p style="margin:6px 0; color:var(--warn)"><strong>⚠️ Two questions for the consultation:</strong> (1) Is the UCI fee <em>included</em> in the $4,200 Core price or <em>on top</em>? (2) Will target colleges grant real <em>credit</em> or only <em>placement</em>? Note: he's already earning <strong>ASU AST 111</strong> credit — confirm the UCI credit isn't redundant.</p>
+      <p style="margin:6px 0"><strong>🚫 NOT paying for:</strong> original research (a 17-year-old in 13 hrs isn't producing novel science, and that's fine) · a guaranteed publication (JEI accepts ~40%) · a measurable admissions edge (no public data shows Polygence kids get in at higher rates).</p>
+      <p style="margin:6px 0"><strong>✅ ARE paying for:</strong> structure + accountability (deadline-driven framework that turns interest into a finished artifact by Aug 15) · a credible adult who can write a recommendation letter (genuinely valuable) · a Common App activity-list line ("Independent research on [topic] under Dr. X (Polygence)") · optionally a paper to link in Additional Info (Core Essential only).</p>
+
+      <h4 style="margin-top:18px; margin-bottom:6px; color:var(--accent2)">❓ Six questions to ask before paying</h4>
+      <ol style="margin-top:4px">
+        <li><strong>Will he actually do the work?</strong> If already self-directed → à la carte enough. If needs structure → Core Basic's PM earns its keep.</li>
+        <li><strong>Is the LOR the real deliverable?</strong> If yes → à la carte fine. Same mentor, same Zoom calls. Save ~$1,000.</li>
+        <li><strong>Does he already have 2 strong recommenders?</strong> If yes, Polygence LOR is nice-to-have, not essential — downgrades value significantly.</li>
+        <li style="color:var(--warn)"><strong>🎯 Has a UT cold-email reply landed?</strong> If a UT prof says yes (even tentatively) → <strong>skip Polygence entirely</strong>. A real UT astronomy lab credential beats any paid program. Single biggest variable. <em>Polygence's own 2025 report shows just <strong>1.1× odds at UT Austin</strong> (28.1% vs. 26.6% general) — their edge shows up at competitive privates, not your in-state flagship. Don't buy Polygence for UT.</em></li>
+        <li><strong>Could the same $4,200 buy something else?</strong> SAT/ACT 1:1 tutoring (~30 sessions, often higher direct impact) · 2× ASU credits + Harvard Ext ASTR E-1A + a paid lab subscription ≈ $2,500 · a used 8" Dobsonian + DSLR + tracking mount for real astrophotography · app fees + score reports + AP exams + college-visit travel ($2K–$5K in fall).</li>
+        <li><strong>Hidden cost:</strong> Polygence does <strong>NOT</strong> count as "demonstrated interest" at most colleges. Doesn't open doors at UT Austin. Signal value mainly at competitive privates where everyone has <em>something</em>.</li>
+      </ol>
+
+      <h4 style="margin-top:18px; margin-bottom:6px; color:var(--accent2)">🟢 vs 🔴: Wisely-spent vs Wasted</h4>
+      <p style="margin:6px 0"><strong style="color:var(--good)">🟢 $4,200 wisely spent:</strong> uses every session · finishes the paper · gets a strong LOR usable for MIT/Caltech/Cornell · project becomes the spine of the "Why this major?" essay. <em>If any of those three are doubtful, the money is better saved.</em></p>
+      <p style="margin:6px 0"><strong style="color:var(--warn)">🔴 $4,200 wasted:</strong> attends 8/13 sessions · paper half-finished · mentor writes generic LOR · he barely mentions the project on the Common App because it didn't feel real to him.</p>
+
+      <div class="actions" style="margin-top:16px">
+        <strong>⭐ Recommended sequence (don't book this week):</strong>
+        <ol>
+          <li><strong>Take the free 15-min consultation anyway</strong> — push HARD on financial aid (have FAFSA/AGI ready). Polygence has meaningful need-based aid; sometimes 30–50% off. Core Basic at $2,500 changes the calculus.</li>
+          <li><strong>Wait 7–10 days for UT cold-email replies.</strong> If even one positive reply by ~June 7–8 → free flagship, skip Polygence entirely.</li>
+          <li><strong>In parallel, lock the free flagship:</strong> IASC asteroid hunt registration (June 10–July 6, ~$30) — real MPC discovery credit as a Common App line.</li>
+          <li><strong>Get a Lumiere Cohort II quote too</strong> (deadline June 21, $2,800–$8,900 with aid). Comparable program, lower base price for entry tier. Pick best aid package.</li>
+          <li><strong>If you do choose Polygence: Core Basic ($4,200), not Core Essential.</strong> The $950 jump for publication coaching is poor ROI — JEI submissions can be done independently for free.</li>
+        </ol>
+      </div>
+
+      <h4 style="margin-top:18px; margin-bottom:6px; color:var(--accent2)">🌲 If/then decision tree (decide by ~June 8)</h4>
+      <table>
+        <tr><th>What happens by June 8</th><th>Then do</th></tr>
+        <tr><td>A UT prof says yes — even tentatively</td><td><strong>Skip Polygence.</strong> Take the UT lab. Save $4,200.</td></tr>
+        <tr><td>No UT reply + Polygence offers 40%+ aid</td><td>Book Polygence Core Basic at ~$2,500. Worth it.</td></tr>
+        <tr><td>No UT reply + Polygence aid offer is small</td><td>Get Lumiere quote. Pick lower-cost option. Or do <em>à la carte</em> at $3,200.</td></tr>
+        <tr><td>No UT reply + budget is tight</td><td>Skip paid mentorship. Use IASC + AAVSO + Open Yale ASTR 160 + a self-driven mini-project + UT cold emails round 2. Save $4,200 for SAT tutoring and app fees.</td></tr>
+      </table>
+
+      <div class="callout" style="margin-top:16px">
+        <strong>Reading the room:</strong> For $4,200, the upside is <em>meaningful but not transformative</em> — several free or cheaper paths produce ~70% of the value. Let the free options (UT emails, IASC, AAVSO) play out for 10 days before committing real money.
+      </div>
+
+      <div class="actions" style="margin-top:16px">
+        <strong>Action this week (the only thing to do right now):</strong>
+        <ol>
+          <li>Go to <a href="https://www.polygence.org">polygence.org</a> — book the free 15-min consultation</li>
+          <li>Be specific: "Senior, astrophysics focus, want a project finishable by mid-August for college apps"</li>
+          <li><strong>Ask about financial aid up front</strong> — don't be shy. Have FAFSA/AGI numbers ready.</li>
+          <li>Do NOT commit on the call. Tell them you'll decide by June 8.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="item stretch">
+      <div class="item-title">Also considered — Pioneer Academics (prestige stretch, higher cost)</div>
+      <div class="meta">
+        <span class="badge cost-high">~$8,500 (over budget)</span>
+        <span class="badge">Online · cohort + 1:1</span>
+        <span class="badge">Oberlin credit option</span>
+      </div>
+      <p>The most admissions-recognized of the three, but roughly 2–2.5× the cost of Lumiere/Polygence. Only worth it if budget opens up and you want the strongest brand-name research credential. Produces a research paper + transcripted Oberlin credit.</p>
+      <div class="actions">
+        <strong>Link:</strong> <a href="https://pioneeracademics.com">pioneeracademics.com</a>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-title">Option C — UT Austin faculty volunteer research (free, long shot)</div>
+      <div class="meta">
+        <span class="badge cost-free">FREE</span>
+        <span class="badge">In-person, Austin</span>
+        <span class="badge">High effort to land</span>
+      </div>
+      <p>If a UT astronomy professor takes you on as a summer volunteer (see Tab 1, item 4), this is by far the strongest possible credential — and free. Worth pursuing aggressively, but you need a backup.</p>
+      <div class="actions">
+        Backup plan: if no UT professor responds by June 7, default to <strong>Lumiere (Option A)</strong>.
+      </div>
+    </div>
+
+    <div class="item stretch">
+      <div class="item-title">Option D — McDonald Observatory Volunteer Days / Citizen Science</div>
+      <div class="meta">
+        <span class="badge cost-low">~$200 (travel)</span>
+        <span class="badge">In-person, Fort Davis</span>
+      </div>
+      <p>Limited summer volunteer opportunities at McDonald Observatory. Combine with citizen-science projects on <strong>Zooniverse</strong> (Galaxy Zoo, Planet Hunters TESS, etc.). With 100+ classifications + a written reflection, this becomes a legitimate "applied astrophysics" activity.</p>
+      <div class="actions">
+        <strong>Links:</strong> <a href="https://mcdonaldobservatory.org">mcdonaldobservatory.org</a> · <a href="https://www.zooniverse.org/projects?discipline=astronomy">zooniverse.org/projects?discipline=astronomy</a>
+      </div>
+    </div>
+
+      </div>
+    </details>
+
+    <h3>Decision matrix</h3>
+    <table>
+      <tr><th>If…</th><th>Then</th></tr>
+      <tr><td>UT prof replies (any tier of yes)</td><td>UT lab (C) — free, strongest possible credential</td></tr>
+      <tr><td>No UT reply + budget allows ~$3,300</td><td><strong>Lumiere Individual (A)</strong> — the current pick (see head-to-head table above)</td></tr>
+      <tr><td>No UT reply + want the Polygence route instead</td><td>Polygence Core Basic (B) — full breakdown above; ~$900 more</td></tr>
+      <tr><td>No UT reply + budget tight</td><td>IASC + AAVSO + Open Yale + UT cold emails round 2 — see Tab 8 free paths</td></tr>
+      <tr><td>Top-tier ambition, no budget cap</td><td>Pioneer Academics (stretch)</td></tr>
+    </table>
+
+    <h3 style="margin-top:32px; border-top:1px dashed var(--border); padding-top:24px">🔵 Academic Core (transcripted rigor)</h3>
+    <p style="color:var(--muted); margin-top:0">College admissions want to see he can handle college-level astrophysics coursework — alongside the flagship project above.</p>
+
+    <div class="item priority">
+      <div class="item-title">PRIMARY — ASU Universal Learner: AST 111 (Introduction to Solar System Astronomy)</div>
+      <div class="meta">
+        <span class="badge cost-low">$25 enroll · ~$400 for credit</span>
+        <span class="badge">3 transferable college credits</span>
+        <span class="badge">7.5 weeks self-paced</span>
+        <span class="badge urgent">AST 112 is FULL — use AST 111</span>
+      </div>
+      <p>AST 112 sections filled before he could enroll. <strong>AST 111 is the right substitute</strong> — same Universal Learner program, same ASU undergraduate course catalog, same transcript path. Topic is solar-system astronomy (planetary formation, planetary geology, moons, comets, exoplanet detection) instead of stars/galaxies/cosmology. Both are 100-level intro astronomy courses; admissions readers won't distinguish.</p>
+      <div class="why">
+        <strong>For senior year apps:</strong> List on Common App as "Dual enrollment: ASU AST 111 Intro to Solar System Astronomy, 3 credits, Grade: A". Order the official transcript and send to colleges as supplemental. The credit posts the same way AST 112 would have.
+      </div>
+      <div class="actions">
+        <strong>Action:</strong>
+        <ol>
+          <li>Go to <a href="https://ea.asu.edu">ea.asu.edu</a></li>
+          <li>Search for <code>AST 111</code> · confirm a session that starts ≤ June 7 (so it finishes before Aug 15)</li>
+          <li>Create account · enroll · pay $25 enrollment</li>
+          <li>Pay the ~$400 transcript fee within 14 days of passing</li>
+        </ol>
+      </div>
+      <div class="callout" style="margin-top:12px">
+        <strong>Why this still works:</strong> The story is "took a real college astronomy course at ASU and earned credit." Solar-system astronomy is arguably easier to write about in an essay (Pluto, JWST exoplanet observations, Europa, Titan) than abstract cosmology — plenty of strong material.
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-title">OPTIONAL — ACC Astronomy (Austin Community College)</div>
+      <div class="meta">
+        <span class="badge">Optional / skip</span>
+        <span class="badge cost-low">~$255 in-district</span>
+      </div>
+      <p>Not needed now that AST 111 is the plan — don't double up on intro astronomy courses. Listed here only as a fallback if for some reason AST 111 enrollment also falls through.</p>
+    </div>
+
+    <div class="item priority" style="border-left-color: var(--good)">
+      <div class="item-title">✅ APPLIED — U Alberta "Astro 101: Black Holes" (Coursera)</div>
+      <div class="meta">
+        <span class="badge" style="background:rgba(94,212,154,0.18); color:var(--good); border-color:var(--good);">Applied / Enrolled</span>
+        <span class="badge cost-free">FREE audit · $49 cert</span>
+        <span class="badge">5 weeks</span>
+      </div>
+      <p>Good — already in the pipeline. 5-week course from University of Alberta covering exactly the relativity/black-holes content from the Cornell course he didn't get into. Pair as supplement to AST 111.</p>
+      <div class="why">
+        <strong>Next step:</strong> Pay the $49 for the verified certificate when finished — that's what makes it list-worthy on the Common App. Free audit alone is harder to credibly cite.
+      </div>
+      <div class="actions">
+        <strong>Link:</strong> <a href="https://www.coursera.org/learn/black-holes">coursera.org/learn/black-holes</a>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The story this builds:</strong> Lumiere research project + ASU AST 111 transcript + U Alberta black-holes certificate + Python/Astropy work (Tab 3) = a coherent "I am an astrophysicist in training" narrative. Three pieces reinforcing each other.
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goTab(1)">← Do Now</button>
+    <button class="nav-btn next" onclick="goTab(3)">Next: Self-Study →</button>
+  </div>
+</div>
+
+<!-- TAB 3: SELF-STUDY (repurposed in v1.1 — Python + Books + Learning Log + free supplements) -->
+<div class="tab-content" id="tab-3">
+  <div class="tab-header">
+    <h2>📚 Self-Study (Python, Books, Learning Log)</h2>
+    <p class="tab-meta">Free, online, every-day work that builds genuine capability — and feeds the essays.</p>
+  </div>
+  <div class="tab-body">
+
+    <div class="item priority">
+      <div class="item-title">Learn Python + Astropy (do this even if nothing else)</div>
+      <div class="meta">
+        <span class="badge cost-free">FREE</span>
+        <span class="badge">~1 hr/day</span>
+        <span class="badge">Essential for astrophysics majors</span>
+      </div>
+      <p>Every astrophysics undergrad program assumes Python literacy. Spend 1 hr/day on this — by August he'll be able to analyze real JWST/Hubble data, which is genuine evidence of capability.</p>
+      <div class="actions">
+        <strong>Links:</strong>
+        <ol>
+          <li>Astropy tutorials (free, official): <a href="https://learn.astropy.org">learn.astropy.org</a></li>
+          <li>NASA's free Python for Astronomy course: <a href="https://www.nasa.gov/learning-resources/">nasa.gov/learning-resources</a></li>
+          <li>JWST public archive (real data): <a href="https://mast.stsci.edu">mast.stsci.edu</a></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-title">Start an "astrophysics learning log" — public</div>
+      <div class="meta">
+        <span class="badge cost-free">FREE</span>
+        <span class="badge">15 min/day</span>
+      </div>
+      <p>Free GitHub Pages site or Medium blog. Post 1× per week: a paper you read, a concept you learned, a Python notebook you wrote. By August: 10–12 posts = portfolio. Admissions officers DO click these links.</p>
+    </div>
+
+    <div class="item">
+      <div class="item-title">Read 2 books this summer (for personal essay material)</div>
+      <div class="meta">
+        <span class="badge cost-low">$10–$20 used</span>
+      </div>
+      <p>Strong essays cite specific intellectual influences. Pick books that genuinely move him and write notes.</p>
+      <div class="actions">
+        Suggestions: <em>The First Three Minutes</em> (Weinberg), <em>Black Hole Survival Guide</em> (Levin), <em>Cosmos</em> (Sagan), <em>A Brief History of Time</em> (Hawking), <em>The Elegant Universe</em> (Greene), <em>Astrophysics for People in a Hurry</em> (Tyson).
+      </div>
+    </div>
+
+    <div class="item stretch">
+      <div class="item-title">Free depth supplements (MIT OCW, edX, Zooniverse)</div>
+      <div class="meta"><span class="badge cost-free">FREE</span></div>
+      <p>Self-study for depth, not credentials. Use sparingly — the priority is Python + AST 112 + Alberta black-holes course.</p>
+      <div class="actions">
+        <strong>Links:</strong>
+        <ol>
+          <li><a href="https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/">MIT OCW 8.282 Introduction to Astronomy</a></li>
+          <li><a href="https://www.edx.org/school/anux">edx.org ANU Astrophysics XSeries</a></li>
+          <li><a href="https://www.zooniverse.org/projects?discipline=astronomy">Zooniverse astronomy projects</a> (Galaxy Zoo, Planet Hunters TESS)</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Daily rhythm:</strong> 1 hr Python + 1 hr AST 112 + 30 min reading/log. ~2.5 hrs/day = strong summer habit. Track it in the calendar checklist (Tab 6).
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goTab(2)">← Flagship + Academic</button>
+    <button class="nav-btn next" onclick="goTab(4)">Next: Local & Free →</button>
+  </div>
+</div>
+
+<!-- TAB 4: LOCAL & FREE -->
+<div class="tab-content" id="tab-4">
+  <div class="tab-header">
+    <h2>⚪ Local & Free (Texture for the Application)</h2>
+    <p class="tab-meta">Low-cost activities that demonstrate genuine, sustained interest.</p>
+  </div>
+  <div class="tab-body">
+
+    <div class="item">
+      <div class="item-title">McDonald Observatory weekend (UT Austin's flagship)</div>
+      <div class="meta">
+        <span class="badge cost-low">~$200 family trip</span>
+        <span class="badge">Fort Davis, TX (7 hr drive)</span>
+      </div>
+      <p>Star Parties Tue/Fri/Sat. Some of the darkest skies in the continental US. Doubles as a family vacation. Worth photographing + writing about for the personal essay.</p>
+      <div class="actions"><strong>Link:</strong> <a href="https://mcdonaldobservatory.org/visit/star-parties">mcdonaldobservatory.org/visit/star-parties</a></div>
+    </div>
+
+    <div class="item">
+      <div class="item-title">UT Painter Hall public observing nights</div>
+      <div class="meta">
+        <span class="badge cost-free">FREE</span>
+        <span class="badge">Walk-up, UT campus</span>
+      </div>
+      <p>Free Wednesday-night telescope viewing on the roof of Painter Hall. Often UT astronomy grad students are present — chat them up.</p>
+      <div class="actions"><strong>Link:</strong> <a href="https://outreach.as.utexas.edu/public/star-parties.html">outreach.as.utexas.edu/public/star-parties</a></div>
+    </div>
+
+    <div class="item">
+      <div class="item-title">Zooniverse — real research as a citizen scientist</div>
+      <div class="meta">
+        <span class="badge cost-free">FREE</span>
+        <span class="badge">Online · 100+ projects</span>
+      </div>
+      <p>Galaxy Zoo, Planet Hunters TESS, Disk Detective. Contributions are credited in published papers. If you log 200+ classifications across a summer and write a short blog post about what you learned, it's a real activity.</p>
+      <div class="actions"><strong>Link:</strong> <a href="https://www.zooniverse.org/projects?discipline=astronomy">zooniverse.org/projects (astronomy)</a></div>
+    </div>
+
+    <div class="callout">
+      <strong>v1.1 note:</strong> Python, books, and learning log moved to Tab 3 (Self-Study) so this tab stays focused on local/community texture.
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goTab(3)">← Self-Study</button>
+    <button class="nav-btn next" onclick="goTab(5)">Next: Fall College Apps →</button>
+  </div>
+</div>
+
+<!-- TAB 5: COLLEGE APPS -->
+<div class="tab-content" id="tab-5">
+  <div class="tab-header">
+    <h2>🎓 August → November: Turn Summer Into Applications</h2>
+    <p class="tab-meta">The whole point of this summer is the Common App that opens Aug 1.</p>
+  </div>
+  <div class="tab-body">
+
+    <h3>Critical Fall 2026 deadlines</h3>
+    <table>
+      <tr><th>Date</th><th>What</th></tr>
+      <tr><td><strong>Aug 1, 2026</strong></td><td>Common App opens for class of 2027</td></tr>
+      <tr><td><strong>Aug 15, 2026</strong></td><td>Order ASU transcript if AST 112 done</td></tr>
+      <tr><td><strong>Sep 1, 2026</strong></td><td>Ask recommenders (mentor, teachers) — give them time!</td></tr>
+      <tr><td><strong>Sep 15, 2026</strong></td><td>SAT/ACT final superscore date for most ED apps</td></tr>
+      <tr><td><strong>Nov 1, 2026</strong></td><td>Early Decision / Early Action deadlines (MIT, Caltech, Stanford REA, etc.)</td></tr>
+      <tr><td><strong>Dec 1, 2026</strong></td><td>UT Austin priority deadline</td></tr>
+      <tr><td><strong>Jan 1, 2027</strong></td><td>Most Regular Decision deadlines</td></tr>
+    </table>
+
+    <h3>Top astrophysics undergrad programs (worth shortlisting)</h3>
+    <table>
+      <tr><th>Tier</th><th>Schools</th></tr>
+      <tr><td>Reach</td><td>MIT, Caltech, Princeton, Harvard, Stanford, Yale, U Chicago</td></tr>
+      <tr><td>Strong target</td><td>Cornell, Columbia, JHU, UCLA, UC Berkeley, U Michigan, U Washington</td></tr>
+      <tr><td>Excellent + Texas</td><td><strong>UT Austin</strong> (top-5 astronomy dept!), Rice, Texas A&M</td></tr>
+      <tr><td>Smaller / specialized</td><td>Williams, Wesleyan, Haverford, Swarthmore, Pomona, Harvey Mudd</td></tr>
+      <tr><td>Safety + great astro</td><td>U Arizona, Arizona State, Penn State, Ohio State</td></tr>
+    </table>
+
+    <div class="callout">
+      <strong>Don't sleep on UT Austin.</strong> Top-5 astronomy department in the country (McDonald Observatory, Hobby-Eberly Telescope, GMT partnership). In-state tuition. Auto-admit if top 6% of class. Should be on the list.
+    </div>
+
+    <h3>How summer 2026 maps to the application</h3>
+    <table>
+      <tr><th>Summer activity</th><th>Where it goes on the app</th></tr>
+      <tr><td>Lumiere research project</td><td>Activities #1 + Additional Info upload of paper + supplemental essay topic</td></tr>
+      <tr><td>ASU AST 111 (3 credits, A)</td><td>"Other coursework" / send official transcript</td></tr>
+      <tr><td>UT cold-email research (if it lands)</td><td>Activities + recommender letter</td></tr>
+      <tr><td>Astronomy Café + AAS + observing nights</td><td>Activities (consolidate as "Astronomy community engagement")</td></tr>
+      <tr><td>Python/Astropy learning log on GitHub</td><td>Link in Additional Info — strong signal</td></tr>
+      <tr><td>Books read + observatory visits</td><td>Material for personal essay / "Why this major?" essays</td></tr>
+    </table>
+
+    <h3>Personal essay angle to develop</h3>
+    <p>The strongest astrophysics-major essays are <strong>specific and intellectual</strong>, not "I've loved space since I was 5." Possible angles:</p>
+    <ul>
+      <li>The moment a concept (e.g., the equivalence principle, dark matter rotation curves) clicked.</li>
+      <li>What he learned trying + failing to understand a real paper.</li>
+      <li>An unanswered question that motivates him (Why is the universe accelerating? Where are the missing baryons? What seeded SMBHs?)</li>
+      <li>The view of a specific object through a real telescope + what it made him want to understand.</li>
+    </ul>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goTab(4)">← Local & Free</button>
+    <button class="nav-btn next" onclick="goTab(6)">Next: Checklist →</button>
+  </div>
+</div>
+
+<!-- TAB 6: CHECKLIST -->
+<div class="tab-content" id="tab-6">
+  <div class="tab-header">
+    <h2>📅 Calendar Checklist</h2>
+    <p class="tab-meta">Tasks pinned to specific dates. Click a day to see details and tick off. Saved in this browser.</p>
+  </div>
+  <div class="tab-body">
+
+    <style>
+      .cal-wrap { margin-top: 8px; }
+      .cal-nav {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 12px; margin-bottom: 14px;
+      }
+      .cal-nav button {
+        background: var(--card2); color: var(--text);
+        border: 1px solid var(--border); border-radius: 8px;
+        padding: 8px 14px; cursor: pointer; font-family: inherit; font-size: 0.95em;
+      }
+      .cal-nav button:hover { border-color: var(--accent); }
+      .cal-nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+      .cal-title { font-weight: 700; font-size: 1.25em; color: var(--accent); }
+      .cal-jump {
+        display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+        justify-content: center;
+      }
+      .cal-jump button {
+        background: var(--bg-soft); color: var(--muted);
+        border: 1px solid var(--border); border-radius: 999px;
+        padding: 4px 12px; cursor: pointer; font-size: 0.82em; font-family: inherit;
+      }
+      .cal-jump button.current { background: var(--accent); color: var(--card); border-color: var(--accent); font-weight: 600; }
+      .cal-grid {
+        display: grid; grid-template-columns: repeat(7, 1fr);
+        gap: 4px; background: var(--border); border: 1px solid var(--border);
+        border-radius: 10px; overflow: hidden;
+      }
+      .cal-dayhead {
+        background: var(--bg-soft); color: var(--muted);
+        text-align: center; padding: 8px 4px;
+        font-size: 0.78em; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .cal-day {
+        background: var(--card); min-height: 78px;
+        padding: 6px; cursor: pointer; position: relative;
+        transition: background 0.15s;
+        display: flex; flex-direction: column; gap: 3px;
+      }
+      .cal-day:hover { background: var(--card2); }
+      .cal-day.empty { background: var(--bg-soft); opacity: 0.45; cursor: default; }
+      .cal-day.empty:hover { background: var(--bg-soft); }
+      .cal-day.has-tasks { background: var(--card2); }
+      .cal-day.selected {
+        outline: 3px solid var(--accent); outline-offset: -3px;
+        background: var(--card2);
+      }
+      .cal-day.today .cal-num {
+        background: var(--accent); color: var(--card);
+        border-radius: 999px; padding: 0 8px;
+      }
+      .cal-day.all-done::after {
+        content: '✓'; position: absolute; top: 4px; right: 6px;
+        color: var(--good); font-weight: bold; font-size: 1.1em;
+      }
+      .cal-num {
+        font-weight: 700; font-size: 0.9em; color: var(--text);
+        align-self: flex-start;
+      }
+      .cal-day.empty .cal-num { color: var(--muted); }
+      .cal-chip {
+        font-size: 0.7em; line-height: 1.2;
+        background: var(--bg-soft); color: var(--text);
+        border-left: 2px solid var(--accent);
+        padding: 2px 5px; border-radius: 3px;
+        overflow: hidden; text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .cal-chip.critical { border-left-color: var(--critical); color: var(--critical); font-weight: 600; }
+      .cal-chip.stretch { border-left-color: var(--accent2); }
+      .cal-chip.done { opacity: 0.45; text-decoration: line-through; }
+      .cal-more { font-size: 0.7em; color: var(--muted); }
+
+      .day-detail {
+        margin-top: 18px; background: var(--card2);
+        border-radius: 10px; padding: 16px 20px;
+        border-left: 4px solid var(--accent);
+      }
+      .day-detail h4 { margin: 0 0 10px; color: var(--accent); font-size: 1.05em; }
+      .day-detail .task-row {
+        display: flex; align-items: flex-start; gap: 10px;
+        padding: 8px 0; border-bottom: 1px solid var(--border);
+      }
+      .day-detail .task-row:last-child { border-bottom: none; }
+      .day-detail .task-row input { margin-top: 4px; transform: scale(1.2); accent-color: var(--accent); }
+      .day-detail .task-row label { cursor: pointer; flex: 1; }
+      .day-detail .task-row.critical label { color: var(--critical); font-weight: 600; }
+      .day-detail .task-row.done label { opacity: 0.5; text-decoration: line-through; }
+      .day-detail .task-empty { color: var(--muted); font-style: italic; }
+
+      .progress-bar {
+        margin: 14px 0 4px; background: var(--bg-soft);
+        border-radius: 999px; height: 10px; overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .progress-fill {
+        height: 100%; background: linear-gradient(90deg, var(--accent), var(--good));
+        transition: width 0.3s ease; border-radius: 999px;
+      }
+      .progress-text {
+        text-align: center; font-size: 0.85em;
+        color: var(--muted); margin-bottom: 14px;
+      }
+
+      @media (max-width: 700px) {
+        .cal-day { min-height: 56px; padding: 4px; }
+        .cal-chip { font-size: 0.62em; }
+        .cal-num { font-size: 0.8em; }
+        .cal-dayhead { font-size: 0.65em; padding: 6px 2px; }
+      }
+    </style>
+
+    <div class="cal-wrap">
+      <div class="progress-text" id="cal-progress">Loading…</div>
+      <div class="progress-bar"><div class="progress-fill" id="cal-progress-fill" style="width:0%"></div></div>
+
+      <div class="cal-jump" id="cal-jump"></div>
+
+      <div class="cal-nav">
+        <button id="cal-prev">← Prev</button>
+        <div class="cal-title" id="cal-title">May 2026</div>
+        <button id="cal-next">Next →</button>
+      </div>
+
+      <div class="cal-grid" id="cal-grid"></div>
+
+      <div class="day-detail" id="cal-detail">
+        <h4 id="cal-detail-title">Select a day</h4>
+        <div id="cal-detail-tasks" class="task-empty">Click any highlighted day on the calendar above to see its tasks.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px">
+      <strong>You've got this.</strong> Cornell was never the only path. By August, with a published research paper, transcripted college astronomy credits, and a portfolio of self-directed learning, his app will be <strong>stronger</strong> than if he'd just paid $5,895 for a one-off course.
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goTab(5)">← Fall Apps</button>
+    <button class="nav-btn next" onclick="goTab(7)">Next: My Notes →</button>
+  </div>
+</div>
+
+<!-- TAB 7: NOTES -->
+<div class="tab-content" id="tab-7">
+  <div class="tab-header">
+    <h2>📝 My Notes & Questions</h2>
+    <p class="tab-meta">Write down anything: questions, things you tried, what worked, what didn't. Then export and send to a parent / mentor / AI assistant for the next round of help.</p>
+  </div>
+  <div class="tab-body">
+
+    <div class="callout">
+      <strong>How this works:</strong> Type into any box below. Click <strong>💾 Save Notes</strong> to keep them in this browser. Click <strong>⬇️ Export as TXT</strong> to download a text file you can share. Notes persist between sessions on this device only.
+    </div>
+
+    <div style="margin: 16px 0; display: flex; gap: 10px; flex-wrap: wrap;">
+      <button class="nav-btn next" style="flex: 0 1 auto; padding: 10px 18px;" onclick="saveNotes()">💾 Save Notes</button>
+      <button class="nav-btn" style="flex: 0 1 auto; padding: 10px 18px;" onclick="exportNotes()">⬇️ Export as TXT</button>
+      <button class="nav-btn" style="flex: 0 1 auto; padding: 10px 18px;" onclick="clearNotes()">🗑️ Clear All</button>
+      <span id="save-status" style="align-self: center; color: var(--good); font-size: 0.9em;"></span>
+    </div>
+
+    <h3>1. General questions / things I'm confused about</h3>
+    <textarea class="note-box" data-key="general" placeholder="e.g., 'Not sure if I should do AST 112 or SES 106. What's the difference?'"></textarea>
+
+    <h3>2. About the flagship choice (Polygence / UT email / etc.)</h3>
+    <textarea class="note-box" data-key="flagship" placeholder="e.g., 'I sent UT cold emails to Prof X, Y, Z — Prof Y replied with...'"></textarea>
+
+    <h3>3. About the ASU AST 112 course</h3>
+    <textarea class="note-box" data-key="asu" placeholder="e.g., 'Started on June 3. Module 2 is tough — confused about parallax math.'"></textarea>
+
+    <h3>4. Cold emails — what I sent / who replied</h3>
+    <textarea class="note-box" data-key="emails" placeholder="e.g., 'Emailed 5 UT professors. 1 reply (Prof X, asked me to send a resume). 0 replies from rest.'"></textarea>
+
+    <h3>5. Things I'm reading / watching</h3>
+    <textarea class="note-box" data-key="reading" placeholder="e.g., 'Reading Black Hole Survival Guide. Confused about why information is preserved.'"></textarea>
+
+    <h3>6. Python / Astropy progress</h3>
+    <textarea class="note-box" data-key="python" placeholder="e.g., 'Got Astropy installed. Plotted my first FITS image of M31.'"></textarea>
+
+    <h3>7. College list / essay ideas</h3>
+    <textarea class="note-box" data-key="college" placeholder="e.g., 'Top schools: MIT, Caltech, UT Austin, Princeton. Essay idea: the moment dark matter clicked.'"></textarea>
+
+    <h3>8. Random ideas / things to research later</h3>
+    <textarea class="note-box" data-key="random" placeholder="e.g., 'What's the Hobby-Eberly Telescope? Heard about FAST radio bursts on a podcast.'"></textarea>
+
+    <h3>9. Stuff that's NOT working / blocking me</h3>
+    <textarea class="note-box" data-key="blockers" placeholder="e.g., 'Polygence is too expensive. UT profs not responding. Astronomy Cafe sessions don't fit my schedule.'"></textarea>
+
+    <h3>10. Specific questions for the next AI/mentor conversation</h3>
+    <textarea class="note-box" data-key="questions" placeholder="e.g., '(1) Help me revise my Polygence proposal. (2) Suggest 3 backup safety schools. (3) How do I read an arXiv paper without giving up?'"></textarea>
+
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goTab(6)">← Checklist</button>
+    <button class="nav-btn next" onclick="goTab(8)">Next: Around the Country →</button>
+  </div>
+</div>
+
+<!-- TAB 8: AROUND THE COUNTRY (added v1.3) -->
+<div class="tab-content" id="tab-8">
+  <div class="tab-header">
+    <h2>🌎 Around the Country — Online Programs</h2>
+    <p class="tab-meta">Broad nationwide scan of online astronomy/astrophysics programs. Filtered for: <strong>online only</strong>, <strong>budget ≤ ~$2,500</strong> where listed, and what's <strong>still actionable for Summer 2026</strong> as of May 24.</p>
+  </div>
+  <div class="tab-body">
+
+    <div class="callout">
+      <strong>Reality check:</strong> Most flagship summer 2026 programs (MIT MOSTEC, NASA SEES, Yale YYGS, Harvard SSP, Stanford SPCS, etc.) closed applications Jan–April 2026. The list below is grouped so you can see what's <em>still open</em> vs. what to <em>track for senior year / gap year</em>.
+    </div>
+
+    <h3>🟢 A. STILL OPEN — Apply for Summer 2026</h3>
+
+    <div class="item critical">
+      <div class="item-title">Inspirit AI — Live Online (Stanford/MIT alumni team)</div>
+      <div class="meta">
+        <span class="badge urgent">Deadline ~June 1, 2026</span>
+        <span class="badge cost-high">~$2,490</span>
+        <span class="badge">10-session cohort + capstone</span>
+        <span class="badge">Aid available</span>
+      </div>
+      <p>Pair ML/AI with astrophysics — past capstones include image classification, time-series, signal detection (applicable to exoplanet light curves, galaxy morphology, asteroid trails). Pipeline to a 1:1 "AI + X" follow-on mentorship.</p>
+      <div class="actions"><strong>Link:</strong> <a href="https://www.inspiritai.com/">inspiritai.com</a></div>
+    </div>
+
+    <div class="item priority">
+      <div class="item-title">Lumiere Research Scholar — Summer Cohort II</div>
+      <div class="meta">
+        <span class="badge urgent">Deadline June 21, 2026</span>
+        <span class="badge cost-high">$2,800–$8,900</span>
+        <span class="badge">Need-based aid</span>
+        <span class="badge">1:1 PhD mentor · research paper</span>
+      </div>
+      <p>Direct alternative / complement to Polygence. Astrophysics mentors available. Optional UC San Diego Extended Studies credit on top. Cohort II is the second summer wave — perfect for a late June start.</p>
+      <div class="actions"><strong>Link:</strong> <a href="https://www.lumiere-education.com/">lumiere-education.com</a></div>
+    </div>
+
+    <div class="item priority">
+      <div class="item-title">IASC — International Astronomical Search Collaboration (asteroid hunting)</div>
+      <div class="meta">
+        <span class="badge cost-free">FREE / ~$30 team fee</span>
+        <span class="badge urgent">Campaign: June 10 – July 6, 2026</span>
+        <span class="badge">Online · real MPC discoveries</span>
+      </div>
+      <p>Real data from Pan-STARRS / Catalina. Teams find previously-unknown asteroid candidates that get submitted to the IAU Minor Planet Center. Successful discoveries earn official MPC provisional designations — <strong>a real, citable astronomy credit on a college app</strong>.</p>
+      <div class="actions"><strong>Link:</strong> <a href="https://iasc.cosmosearch.org/">iasc.cosmosearch.org</a> — if main campaign full, register a partner campaign (MCTI 2026, Haus der Astronomie, CB Devgun Memorial) running same window.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title">Indigo Research — 1:1 PhD Mentorship (rolling intake)</div>
+      <div class="meta">
+        <span class="badge">Rolling</span>
+        <span class="badge cost-high">~$2,500–$5,000</span>
+        <span class="badge">In-house journal submission</span>
+      </div>
+      <p>Lower-cost-end Polygence alternative with an explicit publishing pipeline (<em>Convergence Journal</em>). Worth a quote request even if Polygence is the primary plan.</p>
+      <div class="actions"><strong>Link:</strong> <a href="https://www.indigoresearch.org/">indigoresearch.org</a></div>
+    </div>
+
+    <div class="item stretch">
+      <div class="item-title">Pioneer Academics — LATE / waitlist only for summer 2026</div>
+      <div class="meta">
+        <span class="badge cost-high">~$8,500 (over budget)</span>
+        <span class="badge">Oberlin credit</span>
+      </div>
+      <p>Gold-standard online research program (Oberlin-accredited). Main deadlines closed but worth one email about late/waitlist openings if budget allowed. Probably skip on cost alone.</p>
+      <div class="actions"><strong>Link:</strong> <a href="https://pioneeracademics.com/">pioneeracademics.com</a></div>
+    </div>
+
+    <h3>🟢 B. FREE / Near-Free — Anytime, Self-Paced</h3>
+    <p style="color:var(--muted); margin-top:-6px">Run any of these alongside the flagship project. Cumulative effect = serious portfolio.</p>
+
+    <h4 style="color:var(--accent); margin-top:18px; margin-bottom:8px">Citizen science (publishable contributions)</h4>
+    <div class="item">
+      <div class="item-title">AAVSO — Variable Star Observers</div>
+      <div class="meta"><span class="badge cost-free">$0 · ~$60/yr student membership</span><span class="badge">Co-author potential on JAAVSO papers</span></div>
+      <p>82M+ observation database. CHOICE online courses ($25–$100) build observing skills. <a href="https://www.aavso.org/">aavso.org</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">Zooniverse — Galaxy Zoo, Backyard Worlds: Planet 9, Supernova Hunters, Disk Detective, Radio Galaxy Zoo</div>
+      <div class="meta"><span class="badge cost-free">FREE</span><span class="badge">Lead contributors listed in papers</span></div>
+      <p><a href="https://www.zooniverse.org/">zooniverse.org</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">NASA Exoplanet Watch</div>
+      <div class="meta"><span class="badge cost-free">FREE</span><span class="badge">Submit transit photometry</span></div>
+      <p><a href="https://exoplanets.nasa.gov/exoplanet-watch/">exoplanets.nasa.gov/exoplanet-watch</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">Las Cumbres Observatory — Global Sky Partners (via Skynet Junior Scholars, UNC)</div>
+      <div class="meta"><span class="badge cost-free">FREE</span><span class="badge">Free robotic telescope time</span></div>
+      <p><a href="https://lco.global/education/">lco.global/education</a> · <a href="https://skynet.unc.edu">skynet.unc.edu</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">Einstein@Home / BOINC distributed computing</div>
+      <div class="meta"><span class="badge cost-free">FREE</span><span class="badge">Pulsar / gravitational-wave search</span></div>
+      <p>Real published papers credit volunteer hosts. Set up on his computer. <a href="https://einsteinathome.org">einsteinathome.org</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">Astronomical League — Online Observing Programs</div>
+      <div class="meta"><span class="badge cost-free">~$10 via club membership</span><span class="badge">Mailed certificates</span></div>
+      <p>Structured observing programs (Binocular Messier, Variable Star, etc.) with formal certificates. <a href="https://www.astroleague.org/observing.html">astroleague.org/observing</a></p>
+    </div>
+
+    <h4 style="color:var(--accent); margin-top:18px; margin-bottom:8px">Olympiads & competitions (mostly fall/winter — use summer to train)</h4>
+    <div class="item">
+      <div class="item-title">USAAAO — US Astronomy & Astrophysics Olympiad</div>
+      <div class="meta"><span class="badge cost-low">$20–$30</span><span class="badge">Register Jan 2027 · Exam Feb 2027</span><span class="badge">Online proctored</span></div>
+      <p>National astronomy olympiad. Top performers go to IOAA. <strong>Use summer 2026 to self-study</strong> using past papers. <a href="https://usaaao.org/">usaaao.org</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">USA Physics Olympiad (F=ma → USAPhO)</div>
+      <div class="meta"><span class="badge cost-low">Free via school</span><span class="badge">F=ma exam: Jan 2027</span></div>
+      <p>Register through AAPT in fall 2026. <a href="https://www.aapt.org/physicsteam/">aapt.org/physicsteam</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">NASA Space Apps Challenge — global hackathon</div>
+      <div class="meta"><span class="badge cost-free">FREE</span><span class="badge">Oct 4–5, 2026</span><span class="badge">Online tracks</span></div>
+      <p>48-hour team hackathon on NASA-supplied space/Earth-science problems. <a href="https://www.spaceappschallenge.org/">spaceappschallenge.org</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">Conrad Challenge — Aerospace & Space Settlement track</div>
+      <div class="meta"><span class="badge cost-free">FREE</span><span class="badge">Apps open Aug–Oct 2026</span></div>
+      <p><a href="https://www.conradchallenge.org/">conradchallenge.org</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">Regeneron ISEF — via Texas state / Austin Energy regional fair</div>
+      <div class="meta"><span class="badge cost-free">FREE</span><span class="badge">Submit fall 2026</span></div>
+      <p>If the research project produces a paper by mid-August, submit to TX state or Austin Energy Regional Science Festival in fall 2026 — ISEF qualifier.</p>
+    </div>
+
+    <h4 style="color:var(--accent); margin-top:18px; margin-bottom:8px">Free open courseware (real university lectures)</h4>
+    <div class="item">
+      <div class="item-title">Open Yale ASTR 160 — "Frontiers and Controversies in Astrophysics" (Bailyn) ⭐</div>
+      <p>Black holes, exoplanets, dark energy. Full Yale undergrad lectures + problem sets. Best-in-class free option. <a href="https://oyc.yale.edu/astronomy/astr-160">oyc.yale.edu/astronomy/astr-160</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">Caltech — "The Science of the Solar System" (Mike Brown, Coursera)</div>
+      <p>Free audit. Excellent pairing with ASU AST 111 (also solar-system focused). <a href="https://www.coursera.org/learn/solar-system">coursera.org/learn/solar-system</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">UC Berkeley Astronomy C10 — Alex Filippenko</div>
+      <p>Full intro astronomy webcast. Search YouTube "UC Berkeley Astronomy C10 Filippenko".</p>
+    </div>
+    <div class="item">
+      <div class="item-title">MIT OCW 8.901 + 8.902 — Astrophysics I & II (graduate level)</div>
+      <p>For stretch material. Full lecture notes + problem sets. <a href="https://ocw.mit.edu/search/?q=8.901">ocw.mit.edu</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">Other Coursera free audits</div>
+      <ul>
+        <li>U Tokyo — "From the Big Bang to Dark Energy" (~31 hrs)</li>
+        <li>U Rochester — "Confronting the Big Questions: Highlights of Modern Astronomy"</li>
+        <li>U Edinburgh — "Astrobiology and the Search for Extraterrestrial Life" + "AstroTech"</li>
+        <li>Politecnico di Milano — "Archaeoastronomy" (quirky differentiator)</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="item-title">Khan Academy — Cosmology and Astronomy</div>
+      <p>Free; complete the unit, post the certificate on the learning log. <a href="https://www.khanacademy.org/science/cosmology-and-astronomy">khanacademy.org/science/cosmology-and-astronomy</a></p>
+    </div>
+    <div class="item">
+      <div class="item-title">YouTube channels (background listening)</div>
+      <p><strong>CrashCourse Astronomy</strong> (Phil Plait, 46 eps) · <strong>PBS Space Time</strong> · <strong>World Science U</strong> (Brian Greene cosmology). Not citable alone, but feeds essay material.</p>
+    </div>
+
+    <h3>🔵 C. For-Credit Online Courses (besides ASU AST 111)</h3>
+    <p style="color:var(--muted); margin-top:-6px">Only stack a second course if there's bandwidth. ASU AST 111 should be primary.</p>
+    <table>
+      <tr><th>Source</th><th>Course</th><th>Cost</th><th>Credit type</th></tr>
+      <tr><td>UC Scout</td><td>AP Physics 1 / Physics C</td><td>~$399</td><td>UC a-g credit</td></tr>
+      <tr><td>StraighterLine</td><td>Intro to Astronomy ASTR 101</td><td>~$99/mo + $79</td><td>ACE-recommended transfer</td></tr>
+      <tr><td>U North Dakota</td><td>Survey of Astronomy SPST 281</td><td>~$450–$600</td><td>UND transcript</td></tr>
+      <tr><td>Oregon State Ecampus</td><td>PH 104 Descriptive Astro / PH 122 Stars & Galaxies</td><td>~$370/credit</td><td>OSU transcript</td></tr>
+      <tr><td>U New Mexico</td><td>ASTR 101 online</td><td>~$340/credit</td><td>UNM transcript</td></tr>
+      <tr><td>Penn State World Campus</td><td>ASTRO 001 / 010</td><td>~$680/credit</td><td>PSU transcript</td></tr>
+      <tr><td>LSU Indep. Study</td><td>ASTR 1101 / 1102</td><td>~$300–$500</td><td>LSU transcript</td></tr>
+      <tr><td>BYU Indep. Study</td><td>Astronomy / Physics</td><td>~$200–$400</td><td>BYU transcript</td></tr>
+      <tr><td>Harvard Extension</td><td>ASTR E-1A Intro to Astronomy</td><td>~$1,940</td><td>Harvard Ext. transcript</td></tr>
+    </table>
+    <div class="callout">
+      <strong>Recommendation:</strong> Don't double up unnecessarily. Most college admissions value depth (one strong course + research + Python) over coursework breadth. If layering, pick <em>Harvard Extension ASTR E-1A</em> for the name brand, <em>StraighterLine</em> for cheapest, or <em>UND Survey of Astronomy</em> for cheapest real-university transcript.
+    </div>
+
+    <h3>🟡 D. Online Research Mentorship Platforms (Polygence alternatives)</h3>
+    <table>
+      <tr><th>Program</th><th>Cost</th><th>Output</th><th>Link</th></tr>
+      <tr><td><strong>Lumiere</strong> (current pick)</td><td>$3,300 (Individual)</td><td>Paper</td><td>lumiere-education.com</td></tr>
+      <tr><td>Polygence (alternative)</td><td>$3,200–$5,150</td><td>Paper</td><td>polygence.org</td></tr>
+      <tr><td>Lumiere Education</td><td>$2,800–$8,900</td><td>Paper + UCSD credit option</td><td>lumiere-education.com</td></tr>
+      <tr><td>Pioneer Academics</td><td>~$8,500</td><td>Paper + Oberlin credit</td><td>pioneeracademics.com</td></tr>
+      <tr><td>Indigo Research</td><td>~$2,500–$5,000</td><td>Paper + journal submission</td><td>indigoresearch.org</td></tr>
+      <tr><td>Horizon Academic</td><td>~$3,500–$6,000</td><td>Paper + symposium</td><td>horizonacademic.org</td></tr>
+      <tr><td>Inspirit AI 1:1 / Veritas AI</td><td>~$2,500–$4,500</td><td>AI capstone</td><td>inspiritai.com</td></tr>
+      <tr><td>Scholar Launch</td><td>~$5,500</td><td>Paper + symposium</td><td>scholarlaunch.com</td></tr>
+      <tr><td>Cambridge CCIR</td><td>~£4,000+</td><td>Paper (Oxbridge mentor)</td><td>ccir.cam</td></tr>
+      <tr><td>Ladder Internships</td><td>~$2,000–$3,500</td><td>Virtual internship + LOR</td><td>ladderinternships.com</td></tr>
+      <tr><td>Crimson Education</td><td>$4,000+ bundled</td><td>Paper / project</td><td>crimsoneducation.org</td></tr>
+      <tr><td>Empowerly Research Scholar</td><td>~$5,000+</td><td>Paper</td><td>empowerly.com</td></tr>
+      <tr><td>Aralia Education</td><td>~$1,500–$3,000</td><td>Coursework + paper</td><td>aralia.com</td></tr>
+    </table>
+    <div class="callout">
+      <strong>In-budget shortlist (≤ $3,300):</strong> <strong>Lumiere Individual (current pick)</strong> ≈ Polygence à la carte ≈ Indigo IRIS ≈ Aralia. <strong>See Tab 2 Option A</strong> for the full Lumiere vs Polygence head-to-head — don't book without reading it.
+    </div>
+
+    <div class="item">
+      <div class="item-title">Polygence Work Lab (different product — applied, not research)</div>
+      <p>A separate 6-week startup-internship track (10 hrs training + 40 hrs project), remote, with a completion certificate + LOR opportunity. <strong>Not</strong> astrophysics research — better fit for an applied/entrepreneurial story. <strong>Cohort 2: enroll by June 21 · runs July 6 – Aug 15.</strong></p>
+    </div>
+
+    <h3>🟣 E. Mark Calendar — Apply Fall/Winter for Senior Year or Gap Year</h3>
+    <p style="color:var(--muted); margin-top:-6px">Many gold-standard programs reopen in fall 2026 for summer 2027 or for fall/winter 2026 activities.</p>
+    <table>
+      <tr><th>When apps open</th><th>Program</th><th>Notes</th></tr>
+      <tr><td>Aug 2026</td><td>NASA OSTEM Internships (Spring 2027)</td><td>FREE, virtual options. Requires US citizen, 16+. <a href="https://stemgateway.nasa.gov/">stemgateway.nasa.gov</a></td></tr>
+      <tr><td>Aug–Oct 2026</td><td>Conrad Challenge (Aerospace)</td><td>FREE; team competition</td></tr>
+      <tr><td>Oct 2026</td><td>NASA Space Apps Challenge (hackathon)</td><td>FREE; the actual event Oct 4–5</td></tr>
+      <tr><td>Oct 2026</td><td>Northwestern CTD Online</td><td>~$2,500/course</td></tr>
+      <tr><td>Nov 2026</td><td>MIT BWSI (Beaver Works Summer Institute)</td><td>FREE; selective; online tracks available</td></tr>
+      <tr><td>Nov–Dec 2026</td><td>Stanford SPCS Online Summer College 2027</td><td>~$8,000; selective</td></tr>
+      <tr><td>Nov 2026–Jan 2027</td><td>Yale Young Global Scholars (Online)</td><td>~$2,500; selective</td></tr>
+      <tr><td>Dec 2026–Jan 2027</td><td>Research Science Institute (RSI/CEE)</td><td>FREE; ultra-selective; <em>in-person only</em> but mention</td></tr>
+      <tr><td>Jan 2027</td><td>NASA SEES (Texas Space Grant)</td><td>FREE; he didn't get in 2026 — reapply</td></tr>
+      <tr><td>Jan 2027</td><td>USAAAO First Round + F=ma physics exam</td><td>Train this summer</td></tr>
+      <tr><td>Jan–Feb 2027</td><td>MIT MOSTEC, NASA L'SPACE (undergrad), Pioneer Spring</td><td>Multiple deadlines</td></tr>
+      <tr><td>Mar–Apr 2027</td><td>Cornell / Brown / Columbia / Harvard / UChicago / CMU pre-college (Summer 2027)</td><td>~$3,000–$8,000 each</td></tr>
+    </table>
+
+    <h3>🔴 F. CLOSED / Missed for Summer 2026 (for transparency)</h3>
+    <p style="color:var(--muted); font-size:0.92em">So you know we checked these and they're not in play:</p>
+    <ul>
+      <li>NASA SEES (Jan 2026 deadline) — the one he didn't get into</li>
+      <li>MIT MOSTEC, MITES Saturdays</li>
+      <li>Yale YYGS Online (Jan deadline)</li>
+      <li>Stanford SPCS / Online High School (Mar/Apr deadlines)</li>
+      <li>Harvard Pre-College + Secondary School Program</li>
+      <li>UChicago Summer Online HS, Northwestern CTD, Columbia, Cornell, Brown, UPenn pre-college online</li>
+      <li>JHU CTY summer 2026 (most courses; check on-demand individual-pace)</li>
+      <li>Boston University RISE (in-person Boston only)</li>
+      <li>Simons Summer Research, Garcia Program at Stony Brook (in-person)</li>
+      <li>SSP — Summer Science Program (in-person)</li>
+      <li>U Arizona Astronomy Camp (in-person + waitlist; user already on it)</li>
+      <li>Pioneer Academics main summer 2026 (closed; possible waitlist)</li>
+      <li>Caltech — no online HS astronomy summer program exists</li>
+      <li>U Hawaii IfA HISTAR (in-person)</li>
+    </ul>
+
+    <h3>⭐ Recommended Action Stack (within $2,500 envelope)</h3>
+    <ol>
+      <li><strong>By June 1</strong> — Take Polygence free consultation · push for aid · send 2nd round of UT cold emails.</li>
+      <li><strong>By June 8</strong> — Decide flagship using Tab 2 Option A if/then tree (UT yes → skip Polygence · UT no + aid lands → book Core Basic · UT no + budget tight → free path).</li>
+      <li><strong>By June 21</strong> — Lumiere Cohort II deadline if going that route.</li>
+      <li><strong>Register now (free / $30)</strong> — IASC asteroid campaign (June 10–July 6).</li>
+      <li><strong>Set up free accounts now</strong> — AAVSO + Zooniverse Galaxy Zoo + Skynet Junior Scholars / LCO.</li>
+      <li><strong>June–August daily</strong> — Self-study Open Yale ASTR 160 + Python/Astropy (Tab 3).</li>
+      <li><strong>Optional credit layer</strong> — If Pol/Lumiere doesn't fill the calendar, add Harvard Extension ASTR E-1A or UND Survey of Astronomy.</li>
+      <li><strong>Mark calendar Sept–Jan</strong> — USAAAO, F=ma, NASA Space Apps, Conrad, NASA OSTEM, MIT BWSI, YYGS Online.</li>
+    </ol>
+
+    <div class="callout">
+      <strong>Bottom line:</strong> The plan he's already on (ASU AST 111 + <strong>Lumiere</strong> + Alberta black holes + Python + UT cold emails) is solid. The high-value <em>additions</em> from this scan: <strong>IASC asteroid hunting</strong> (real discovery credit, free, fits the dates), <strong>AAVSO observer account</strong> (publishable contributions), and <strong>Open Yale ASTR 160</strong> as the daily self-study spine.
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goTab(7)">← My Notes</button>
+    <button class="nav-btn next" onclick="goTab(0)">↺ Back to Start</button>
+  </div>
+</div>
+
+<!-- TAB 9 REMOVED v1.6 — content merged into Tab 2 Option A -->
+<footer>
+  <p>🌌 Plan prepared May 23, 2026 · Austin, TX · For a rising senior aspiring astrophysicist</p>
+  <p><em>"Somewhere, something incredible is waiting to be known." — Carl Sagan</em></p>
+</footer>
+
+</div>
+
+<script>
+  function goTab(n) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.stepper-item').forEach(s => s.classList.remove('active'));
+    document.getElementById('tab-' + n).classList.add('active');
+    document.querySelector('.stepper-item[data-tab="' + n + '"]').classList.add('active');
+    document.body.setAttribute('data-theme', n);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.querySelectorAll('.stepper-item').forEach(item => {
+    item.addEventListener('click', () => goTab(item.dataset.tab));
+  });
+  // Initialize theme on load
+  document.body.setAttribute('data-theme', '0');
+
+  // ===== Notes persistence =====
+  const NOTE_LABELS = {
+    general: "General questions / things I'm confused about",
+    flagship: "Flagship choice (Polygence / UT email / etc.)",
+    asu: "ASU AST 112 course",
+    emails: "Cold emails — what I sent / who replied",
+    reading: "Things I'm reading / watching",
+    python: "Python / Astropy progress",
+    college: "College list / essay ideas",
+    random: "Random ideas / things to research later",
+    blockers: "Stuff that's NOT working / blocking me",
+    questions: "Specific questions for next mentor/AI conversation"
+  };
+
+  function loadNotes() {
+    document.querySelectorAll('textarea.note-box').forEach(box => {
+      const saved = localStorage.getItem('astro-note-' + box.dataset.key);
+      if (saved) box.value = saved;
+    });
+    // Also load checkboxes
+    document.querySelectorAll('.checklist input[type=checkbox]').forEach((cb, i) => {
+      if (localStorage.getItem('astro-check-' + i) === '1') cb.checked = true;
+      cb.addEventListener('change', () => {
+        localStorage.setItem('astro-check-' + i, cb.checked ? '1' : '0');
+      });
+    });
+  }
+
+  function saveNotes() {
+    document.querySelectorAll('textarea.note-box').forEach(box => {
+      localStorage.setItem('astro-note-' + box.dataset.key, box.value);
+    });
+    flashStatus('✓ Saved to this browser');
+  }
+
+  function exportNotes() {
+    // Auto-save first
+    saveNotes();
+    const date = new Date().toLocaleString();
+    let txt = "========================================\n";
+    txt += "  ASTROPHYSICS SUMMER 2026 — MY NOTES\n";
+    txt += "  Exported: " + date + "\n";
+    txt += "========================================\n\n";
+    Object.entries(NOTE_LABELS).forEach(([key, label]) => {
+      const val = (localStorage.getItem('astro-note-' + key) || '').trim();
+      txt += "## " + label + "\n";
+      txt += "----------------------------------------\n";
+      txt += (val || "(no notes yet)") + "\n\n";
+    });
+    // Add calendar checklist status
+    txt += "========================================\n";
+    txt += "  CALENDAR CHECKLIST PROGRESS\n";
+    txt += "========================================\n\n";
+    let lastMonth = '';
+    Object.keys(TASKS).sort().forEach(dateStr => {
+      const d = new Date(dateStr + 'T12:00:00');
+      const monthLabel = d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      if (monthLabel !== lastMonth) {
+        txt += "\n## " + monthLabel + "\n";
+        lastMonth = monthLabel;
+      }
+      const dayLabel = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      txt += "\n  " + dayLabel + "\n";
+      TASKS[dateStr].forEach(t => {
+        const mark = localStorage.getItem('astro-task-' + t.id) === '1' ? '[x]' : '[ ]';
+        txt += "  " + mark + " " + t.text + (t.critical ? " (!)" : "") + "\n";
+      });
+    });
+    // Download
+    const blob = new Blob([txt], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'astrophysics-notes-' + new Date().toISOString().slice(0,10) + '.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    flashStatus('✓ Downloaded as .txt');
+  }
+
+  function clearNotes() {
+    if (!confirm('Clear all notes and checkboxes? This cannot be undone.')) return;
+    Object.keys(NOTE_LABELS).forEach(key => localStorage.removeItem('astro-note-' + key));
+    document.querySelectorAll('textarea.note-box').forEach(box => box.value = '');
+    Object.values(TASKS).flat().forEach(t => localStorage.removeItem('astro-task-' + t.id));
+    if (typeof renderCalendar === 'function') renderCalendar();
+    flashStatus('✓ All cleared');
+  }
+
+  function flashStatus(msg) {
+    const el = document.getElementById('save-status');
+    if (!el) return;
+    el.textContent = msg;
+    setTimeout(() => { el.textContent = ''; }, 2500);
+  }
+
+  // Auto-save notes 1.5s after typing stops
+  let saveTimer = null;
+  document.addEventListener('input', e => {
+    if (e.target.matches('textarea.note-box')) {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveNotes, 1500);
+    }
+  });
+
+  // ===== Version / Changelog =====
+  const CHANGELOG = [
+    {
+      version: 'v2.2',
+      date: 'June 3, 2026',
+      changes: [
+        '📅 <strong>Updated the calendar checklist (Tab 6) to match reality:</strong> the old June 1 "decide flagship — commit to Polygence" item is replaced with the actual June 3 outcome (✅ chose Lumiere Individual $3,300). Added time-sensitive tasks — 2nd-round UT cold emails (June 4), AST 111 enroll by June 7, <strong>IASC registration before June 10</strong>, and "Lumiere next-steps email" (~June 10). All "Polygence paper" milestones (draft, JEI submission, Additional Info link) now read "Lumiere."'
+      ]
+    },
+    {
+      version: 'v2.1',
+      date: 'June 3, 2026',
+      changes: [
+        '🔄 <strong>Refreshed Tab 1 — now "Do Now" (dated June 3)</strong> instead of the stale "Do This Week." Reordered around the current timeline: time-sensitive IASC (before June 10) and AST 111 (start ≤ June 7) at top, 2nd-round UT cold emails as the decision-changer, respond-to-Lumiere when their email lands, free-account setup, and Common App marked done.',
+        '📂 <strong>Made Options B–D collapsible</strong> in Tab 2 — Lumiere (Option A) + the head-to-head table stay open; Polygence/Pioneer/UT-lab/McDonald are tucked into an expandable “Other flagship options” panel to reduce clutter now that Lumiere is the pick.'
+      ]
+    },
+    {
+      version: 'v2.0',
+      date: 'June 3, 2026',
+      changes: [
+        '📋 <strong>Added a collapsible "Questions to ask Lumiere" box</strong> inside Tab 2 Option A — 19 questions across cost/price-reduction, mentor &amp; fit, timeline &amp; deliverables, and outcomes. Flags the two biggest price levers (need-based aid + competitive price-match) and the "see the mentor before committing" guardrail.'
+      ]
+    },
+    {
+      version: 'v1.9',
+      date: 'June 3, 2026',
+      changes: [
+        '🔁 <strong>Lumiere is now Option A (the recommendation).</strong> Spoke to Lumiere June 3 — Individual program quoted at <strong>$3,300</strong> (base, no UCSD credit add-on). Chosen over Polygence for lower cost (−$900), more prestigious PhD mentor pool, and better astrophysics fit. Awaiting their next-steps email (~1 week) for mentor match + start date.',
+        '⚖️ <strong>Added a Lumiere vs Polygence head-to-head table</strong> in Tab 2 — cost, format, mentor pedigree, output, publication path, credit option, college-app weight, prestige, aid, and fit, with a verdict row.',
+        '📉 <strong>Polygence demoted to Option B</strong> — full cost-benefit breakdown kept intact for transparency and as a backup. Pioneer Academics moved to an "also considered" stretch note. Option C backup line now defaults to Lumiere.'
+      ]
+    },
+    {
+      version: 'v1.8',
+      date: 'May 29, 2026',
+      changes: [
+        '🎨 <strong>New pastel color palette across all tabs.</strong> Replaced the alternating dark/light themes with a cohesive set of soft pastels — periwinkle, peach, mint, butter, sage, powder sky, teal, lilac, and cornflower. Deepened heading colors for readable contrast on the lighter cards.'
+      ]
+    },
+    {
+      version: 'v1.7',
+      date: 'May 29, 2026',
+      changes: [
+        '🎓 <strong>Tab 2 Option A — added UC Irvine Credit Add-On box:</strong> Polygence Core papers can earn 3 transferable UC Irvine credits + an official UC transcript + Common App "pre-collegiate program" status. This is the strongest reason to pick Core over à la carte. Flags two consultation questions (is the UCI fee included or on top? real credit or just placement?) and the ASU AST 111 redundancy check.',
+        '🎯 <strong>UT Austin reality-check:</strong> Polygence\'s own 2025 report shows just 1.1× odds at UT Austin (28.1% vs 26.6% general) — added to the UT cold-email question to reinforce "don\'t buy Polygence for the in-state flagship."',
+        '💼 <strong>Tab 8 — added Polygence Work Lab note:</strong> a separate applied/startup-internship track (not astrophysics research). Cohort 2 enrolls by June 21, runs July 6–Aug 15.'
+      ]
+    },
+    {
+      version: 'v1.6',
+      date: 'May 28, 2026',
+      changes: [
+        '🔀 <strong>Removed Tab 9</strong> — folded the full Polygence cost-benefit framework into <strong>Tab 2 Option A</strong> where the recommendation actually lives. One place to read, decide, and act.',
+        '💰 <strong>Pricing updated everywhere:</strong> $3,200 à la carte / $4,200 Core Basic / $5,150 Core Essential (was ~$2,800). Budget comparison table, Tab 8 platform table, Tab 8 callout, and action-stack timeline all corrected.',
+        '🎯 <strong>Tab 2 Option A now contains:</strong> 3-tier pricing table · "what you\'re paying for vs not" · 6 questions to ask · green/red wisely-vs-wasted · 5-step recommended sequence · if/then decision tree · action-this-week (do free consultation, don\'t commit until June 8).'
+      ]
+    },
+    {
+      version: 'v1.5',
+      date: 'May 28, 2026',
+      changes: [
+        '💰 Added Tab 9 — Polygence $$$ cost-benefit (later folded into Tab 2 in v1.6).'
+      ]
+    },
+    {
+      version: 'v1.4',
+      date: 'May 24, 2026',
+      changes: [
+        '📐 Made the layout fully responsive — adapts from iPhone (≥320px) to 27"+ desktop monitors. Container now uses <code>min(1600px, 95vw)</code> so wide screens fill nicely instead of stranding empty space at 1000px.',
+        '🎚️ Padding, headings, and tab text now scale with viewport via <code>clamp()</code> — bigger and more readable on large displays, tighter on phones.',
+        '📑 Stepper switched from horizontal-scroll to a wrapping grid: all 8 tabs visible at once on most screens (4-across on tablets, 2-across on phones).',
+        '📅 Calendar chips hide on screens narrower than 480px so day cells stay readable on phones.'
+      ]
+    },
+    {
+      version: 'v1.3',
+      date: 'May 24, 2026',
+      changes: [
+        '🌎 Added new <strong>Tab 8 — Around the Country</strong>: nationwide scan of online astronomy/astrophysics programs (still-open apps, free citizen science, for-credit courses at other universities, Polygence alternatives, fall/winter programs to track, and what\'s closed).',
+        '💡 Key actionable adds surfaced: <strong>Inspirit AI</strong> (~$2,490, deadline ~June 1), <strong>Lumiere Cohort II</strong> (deadline June 21), <strong>IASC asteroid hunt</strong> (free, June 10–July 6), <strong>AAVSO</strong> observer, <strong>Open Yale ASTR 160</strong> as daily self-study spine.'
+      ]
+    },
+    {
+      version: 'v1.2',
+      date: 'May 24, 2026',
+      changes: [
+        '🔄 Swapped ASU <strong>AST 112</strong> (full) → <strong>AST 111: Introduction to Solar System Astronomy</strong>. Same Universal Learner program, 3 transferable credits, ~$25 + ~$400 transcript. All calendar tasks, story callouts, and Common App mapping updated.',
+        '➖ Marked ACC Astronomy as <em>Optional</em> — don\'t double up on intro astro courses; ASU AST 111 is the primary now.'
+      ]
+    },
+    {
+      version: 'v1.1',
+      date: 'May 24, 2026',
+      changes: [
+        '🔀 Merged "Pick a Flagship" and "Academic Core" into a single Tab 2 ("Flagship + Academic Core").',
+        '📚 Tab 3 repurposed as "Self-Study" (Python + books + learning log moved here).',
+        '🚫 Removed U Arizona Astronomy Camp entirely — no travel this summer (waitlist email + Option E + Tab 1 item #1 all deleted).',
+        '✅ Common App account marked as DONE — teen already created it.',
+        '✅ U Alberta "Astro 101: Black Holes" (Coursera) marked as APPLIED / enrolled.',
+        '📅 Calendar checklist updated to match: removed Arizona-email task on 5/25, removed Common App task on 5/30, updated U Alberta task on 6/3.',
+        '🏷️ Added this version banner + changelog (this thing you\'re reading).'
+      ]
+    },
+    {
+      version: 'v1.0',
+      date: 'May 23, 2026',
+      changes: [
+        '🎉 Initial plan for rising-senior astrophysics summer 2026.',
+        '🎨 Per-tab color themes (mix of dark and light).',
+        '📅 Calendar checklist view with date-specific tasks.',
+        '📝 My Notes tab with localStorage persistence + .txt export.'
+      ]
+    }
+  ];
+
+  function renderChangelog() {
+    const panel = document.getElementById('changelog-panel');
+    if (!panel) return;
+    panel.innerHTML = CHANGELOG.map(entry => `
+      <div class="entry">
+        <h4>${entry.version} <span class="when">· ${entry.date}</span></h4>
+        <ul>${entry.changes.map(c => `<li>${c}</li>`).join('')}</ul>
+      </div>
+    `).join('');
+    const current = CHANGELOG[0];
+    const vNum = document.getElementById('version-num');
+    const vDate = document.getElementById('version-date');
+    if (vNum) vNum.textContent = current.version;
+    if (vDate) vDate.textContent = 'updated ' + current.date;
+  }
+  document.getElementById('changelog-toggle')?.addEventListener('click', () => {
+    document.getElementById('changelog-panel').classList.toggle('open');
+  });
+  renderChangelog();
+
+  // ===== Calendar Checklist =====
+  const TASKS = {
+    '2026-05-25': [
+      { id:'tac', text:'Sign up for Teen Astronomy Café' },
+      { id:'aas', text:'Join Austin Astronomical Society / find next star party' }
+    ],
+    '2026-05-27': [{ id:'ut-papers', text:'Read 2–3 papers by UT astronomy faculty' }],
+    '2026-05-28': [{ id:'ut-emails', text:'Draft + send 3 cold emails to UT astronomy professors', critical:true }],
+    '2026-05-29': [{ id:'poly-call', text:'Research mentorship consultations (Lumiere + Polygence) booked' }],
+    '2026-05-30': [
+      { id:'resume', text:'Create 1-page astrophysics resume' }
+    ],
+    '2026-06-03': [
+      { id:'lumiere-call', text:'✅ Spoke to Lumiere — chose Individual ($3,300) as flagship (Option A)', critical:true },
+      { id:'alberta-progress', text:'U Alberta Black Holes course (Coursera) — start week 1 module' }
+    ],
+    '2026-06-04': [
+      { id:'ut-emails-2', text:'Send 2nd round of UT cold emails (the decision-changer)', critical:true },
+      { id:'log-setup', text:'Set up GitHub Pages or Medium learning log' }
+    ],
+    '2026-06-05': [
+      { id:'ast111-enroll', text:'Enroll in ASU AST 111 ($25) — pick a session starting ≤ June 7', critical:true },
+      { id:'schedule', text:'Block 10 hrs/wk AST 111 + 5 hrs/wk Python on calendar' }
+    ],
+    '2026-06-09': [{ id:'iasc-reg', text:'⏰ Register for IASC asteroid hunt (~$30) BEFORE the June 10 campaign start', critical:true }],
+    '2026-06-10': [{ id:'lumiere-next', text:'Lumiere next-steps email expected (~1 wk) — confirm mentor match + start date + mid-Aug paper timeline' }],
+    '2026-06-15': [{ id:'log-post-1', text:'Publish first learning log post' }],
+    '2026-06-22': [{ id:'ast111-wk3', text:'AST 111: completed first 3 modules — on track?' }],
+    '2026-07-03': [{ id:'mcdonald', text:'McDonald Observatory dark-sky weekend (4th of July)', stretch:true }],
+    '2026-07-15': [
+      { id:'ast111-half', text:'AST 111 halfway checkpoint — passing?' },
+      { id:'poly-topic', text:'Lumiere project topic chosen + mentor matched' },
+      { id:'log-5', text:'5+ learning log posts published' },
+      { id:'recs-id', text:'Identified 2 teachers + 1 mentor as recommenders' },
+      { id:'essay-v1', text:'Personal essay v1 drafted' }
+    ],
+    '2026-08-01': [{ id:'commonapp-open', text:'Common App opens — start filling out activities/profile', critical:true }],
+    '2026-08-15': [
+      { id:'ast111-done', text:'AST 111 completed — passed' },
+      { id:'transcript-pay', text:'Pay ~$400 → grade posted to ASU transcript' },
+      { id:'poly-draft', text:'Lumiere research paper drafted' },
+      { id:'activities', text:'Common App activities list complete' },
+      { id:'list', text:'College list finalized (8–12 schools, incl. UT Austin)' },
+      { id:'recs-ask', text:'Ask recommenders + send resume / brag sheet' },
+      { id:'essay-v3', text:'Personal essay v3 (after 2+ readers)' }
+    ],
+    '2026-09-01': [{ id:'supp-start', text:'Begin supplemental essays for top schools' }],
+    '2026-09-15': [{ id:'rec-remind', text:'Polite reminder ping to recommenders' }],
+    '2026-10-01': [{ id:'jei', text:'Submit Lumiere paper to JEI (Journal of Emerging Investigators)' }],
+    '2026-10-15': [{ id:'supp-draft', text:'All supplemental essays drafted' }],
+    '2026-10-25': [{ id:'final-review', text:'Final review pass on all ED/EA apps' }],
+    '2026-11-01': [
+      { id:'submit', text:'ED/EA applications submitted', critical:true },
+      { id:'transcript-send', text:'ASU official transcript sent to all schools' },
+      { id:'paper-link', text:'Lumiere research paper linked in Additional Info' },
+      { id:'supp-done', text:'All supplemental essays submitted' }
+    ]
+  };
+
+  const MONTHS = [
+    { y:2026, m:4,  label:'May 2026' },
+    { y:2026, m:5,  label:'June 2026' },
+    { y:2026, m:6,  label:'July 2026' },
+    { y:2026, m:7,  label:'August 2026' },
+    { y:2026, m:8,  label:'September 2026' },
+    { y:2026, m:9,  label:'October 2026' },
+    { y:2026, m:10, label:'November 2026' }
+  ];
+  const MONTH_SHORT = ['May','Jun','Jul','Aug','Sep','Oct','Nov'];
+  const DAY_HEADS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const TODAY_STR = (() => {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  })();
+
+  let calMonthIdx = 0;
+  let calSelected = null;
+
+  function dateKey(y, m, d) {
+    return y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+  }
+  function taskDone(id) { return localStorage.getItem('astro-task-' + id) === '1'; }
+  function setTaskDone(id, done) {
+    if (done) localStorage.setItem('astro-task-' + id, '1');
+    else localStorage.removeItem('astro-task-' + id);
+  }
+  function dayAllDone(key) {
+    const ts = TASKS[key];
+    return ts && ts.length > 0 && ts.every(t => taskDone(t.id));
+  }
+
+  function renderJump() {
+    const jump = document.getElementById('cal-jump');
+    jump.innerHTML = '';
+    MONTHS.forEach((mo, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = MONTH_SHORT[i];
+      if (i === calMonthIdx) btn.classList.add('current');
+      btn.addEventListener('click', () => { calMonthIdx = i; calSelected = null; renderCalendar(); });
+      jump.appendChild(btn);
+    });
+  }
+
+  function renderCalendar() {
+    const mo = MONTHS[calMonthIdx];
+    document.getElementById('cal-title').textContent = mo.label;
+    document.getElementById('cal-prev').disabled = calMonthIdx === 0;
+    document.getElementById('cal-next').disabled = calMonthIdx === MONTHS.length - 1;
+
+    const grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+    DAY_HEADS.forEach(d => {
+      const h = document.createElement('div');
+      h.className = 'cal-dayhead';
+      h.textContent = d;
+      grid.appendChild(h);
+    });
+    const firstDay = new Date(mo.y, mo.m, 1).getDay();
+    const daysInMonth = new Date(mo.y, mo.m + 1, 0).getDate();
+    for (let i = 0; i < firstDay; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'cal-day empty';
+      grid.appendChild(empty);
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const key = dateKey(mo.y, mo.m, d);
+      const cell = document.createElement('div');
+      cell.className = 'cal-day';
+      const tasks = TASKS[key];
+      if (tasks) cell.classList.add('has-tasks');
+      if (key === TODAY_STR) cell.classList.add('today');
+      if (key === calSelected) cell.classList.add('selected');
+      if (dayAllDone(key)) cell.classList.add('all-done');
+
+      const num = document.createElement('div');
+      num.className = 'cal-num';
+      num.textContent = d;
+      cell.appendChild(num);
+
+      if (tasks) {
+        const show = tasks.slice(0, 2);
+        show.forEach(t => {
+          const chip = document.createElement('div');
+          chip.className = 'cal-chip';
+          if (t.critical) chip.classList.add('critical');
+          if (t.stretch) chip.classList.add('stretch');
+          if (taskDone(t.id)) chip.classList.add('done');
+          chip.textContent = t.text;
+          chip.title = t.text;
+          cell.appendChild(chip);
+        });
+        if (tasks.length > 2) {
+          const more = document.createElement('div');
+          more.className = 'cal-more';
+          more.textContent = '+' + (tasks.length - 2) + ' more';
+          cell.appendChild(more);
+        }
+        cell.addEventListener('click', () => { calSelected = key; renderCalendar(); });
+      }
+      grid.appendChild(cell);
+    }
+    renderDetail();
+    renderProgress();
+    renderJump();
+  }
+
+  function renderDetail() {
+    const titleEl = document.getElementById('cal-detail-title');
+    const tasksEl = document.getElementById('cal-detail-tasks');
+    if (!calSelected || !TASKS[calSelected]) {
+      titleEl.textContent = 'Select a day';
+      tasksEl.className = 'task-empty';
+      tasksEl.innerHTML = 'Click any highlighted day on the calendar above to see its tasks.';
+      return;
+    }
+    const d = new Date(calSelected + 'T12:00:00');
+    titleEl.textContent = d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+    tasksEl.className = '';
+    tasksEl.innerHTML = '';
+    TASKS[calSelected].forEach(t => {
+      const row = document.createElement('div');
+      row.className = 'task-row';
+      if (t.critical) row.classList.add('critical');
+      const done = taskDone(t.id);
+      if (done) row.classList.add('done');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id = 'cb-' + t.id;
+      cb.checked = done;
+      cb.addEventListener('change', () => {
+        setTaskDone(t.id, cb.checked);
+        renderCalendar();
+      });
+      const lbl = document.createElement('label');
+      lbl.htmlFor = cb.id;
+      lbl.textContent = t.text;
+      row.appendChild(cb);
+      row.appendChild(lbl);
+      tasksEl.appendChild(row);
+    });
+  }
+
+  function renderProgress() {
+    const all = Object.values(TASKS).flat();
+    const done = all.filter(t => taskDone(t.id)).length;
+    const pct = all.length ? Math.round(done / all.length * 100) : 0;
+    document.getElementById('cal-progress').textContent =
+      done + ' / ' + all.length + ' tasks complete (' + pct + '%)';
+    document.getElementById('cal-progress-fill').style.width = pct + '%';
+  }
+
+  document.getElementById('cal-prev').addEventListener('click', () => {
+    if (calMonthIdx > 0) { calMonthIdx--; calSelected = null; renderCalendar(); }
+  });
+  document.getElementById('cal-next').addEventListener('click', () => {
+    if (calMonthIdx < MONTHS.length - 1) { calMonthIdx++; calSelected = null; renderCalendar(); }
+  });
+
+  // Auto-jump to current month if it's in range
+  for (let i = 0; i < MONTHS.length; i++) {
+    if (MONTHS[i].y === new Date().getFullYear() && MONTHS[i].m === new Date().getMonth()) {
+      calMonthIdx = i;
+      break;
+    }
+  }
+  // Auto-select today if it has tasks
+  if (TASKS[TODAY_STR]) calSelected = TODAY_STR;
+
+  renderCalendar();
+  loadNotes();
+</script>
+
+</body>
+</html>
