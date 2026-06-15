@@ -104,6 +104,14 @@
     --good:#2ea66a; --warn:#c2790f;
     --shadow: 0 4px 16px rgba(91,120,224,0.12);
   }
+  /* Tab 9 — Scholarships: Rose Gold */
+  body[data-theme="9"] {
+    --bg:#fdeff2; --bg-soft:#fbe1e8; --card:#ffffff; --card2:#fce8ed;
+    --accent:#d65c7f; --accent2:#1f7d6b;
+    --text:#451a2a; --muted:#8a6072; --border:#f3d0db;
+    --good:#2ea66a; --warn:#c2790f;
+    --shadow: 0 4px 16px rgba(214,92,127,0.12);
+  }
 
 
   * { box-sizing: border-box; }
@@ -249,6 +257,7 @@
   .stepper-item[data-tab="6"] .stepper-num { background: #3bb3ad; }
   .stepper-item[data-tab="7"] .stepper-num { background: #a05cd6; }
   .stepper-item[data-tab="8"] .stepper-num { background: #5b78e0; }
+  .stepper-item[data-tab="9"] .stepper-num { background: #d65c7f; }
   .stepper-item.active .stepper-num {
     transform: scale(1.1);
     box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
@@ -582,7 +591,7 @@
     <strong>⚠️ This is THE summer that matters for college apps.</strong> Common App opens Aug 1. Early Decision deadlines are Nov 1, 2026. Whatever you build this summer becomes the headline of your application. Choose <em>impact</em> over <em>busy work</em>.
   </div>
   <div class="version-row">
-    <span class="version-tag" id="version-tag"><span class="dot"></span> <span id="version-num">v2.5</span> · <span id="version-date">updated June 3, 2026</span></span>
+    <span class="version-tag" id="version-tag"><span class="dot"></span> <span id="version-num">v2.6</span> · <span id="version-date">updated June 15, 2026</span></span>
     <button class="changelog-toggle" id="changelog-toggle" type="button">📜 What changed?</button>
   </div>
   <div class="changelog-panel" id="changelog-panel"></div>
@@ -621,6 +630,10 @@
   <div class="stepper-item" data-tab="8">
     <span class="stepper-num"><span>8</span></span>
     Around the Country
+  </div>
+  <div class="stepper-item" data-tab="9">
+    <span class="stepper-num"><span>9</span></span>
+    Scholarships
   </div>
 </div>
 
@@ -1686,11 +1699,77 @@
   </div>
   <div class="nav-buttons">
     <button class="nav-btn" onclick="goTab(7)">← My Notes</button>
-    <button class="nav-btn next" onclick="goTab(1)">↺ Back to Do Now</button>
+    <button class="nav-btn next" onclick="goTab(9)">Next: Scholarships →</button>
   </div>
 </div>
 
-<!-- TAB 9 REMOVED v1.6 — content merged into Tab 2 Option A -->
+<!-- TAB 9: SCHOLARSHIPS (added v2.6) -->
+<div class="tab-content" id="tab-9">
+  <div class="tab-header">
+    <h2>🎓 Scholarships &amp; College Coach</h2>
+    <p class="tab-meta">Bright Horizons College Coach — “Successful Scholarship Strategies” 1:1. Session prep + a place to capture takeaways.</p>
+  </div>
+  <div class="tab-body">
+
+    <div class="callout">
+      <strong>🕒 45-minute session plan:</strong> open with context (5 min) → six core questions (~30 min) → close &amp; lock in actions (5 min). Don’t read all six upfront — ask one, let them talk, move down. If short on time, ask only the ⭐ three.
+    </div>
+
+    <h3>1 · Open with context (first 5 min)</h3>
+    <div class="item">
+      <div class="item-title">Set the frame so every answer is tailored</div>
+      <p><em>“Rising senior, astrophysics major, Austin TX — strong STEM profile. This summer he has a Lumiere research paper, ASU college credits, and an IASC asteroid-discovery credit. We’re weighing merit vs. need-based aid and want to maximize scholarship money. Budget reality: ____.”</em></p>
+      <div class="why">Then ask: <strong>“Given that — where would you focus our time?”</strong></div>
+    </div>
+
+    <h3>2 · The six core questions (~30 min, ~5 min each)</h3>
+    <div class="item">
+      <div class="item-title">1. Strategy &amp; timeline</div>
+      <p>For class of 2027, what’s the scholarship timeline from now to spring — and what do families most often miss?</p>
+    </div>
+    <div class="item priority">
+      <div class="item-title">2. ⭐ Best ROI</div>
+      <p>Should we prioritize college merit aid vs. outside scholarships? Where’s the better return on effort for a strong STEM kid?</p>
+    </div>
+    <div class="item priority">
+      <div class="item-title">3. ⭐ Target the money</div>
+      <p>Which schools / honors colleges give the best <em>automatic or stackable</em> merit where he’d be top-25% of admits? How do we build the list around that?</p>
+    </div>
+    <div class="item priority">
+      <div class="item-title">4. ⭐ Leverage his profile</div>
+      <p>How do we frame the research paper + college credits + asteroid discovery for maximum scholarship impact? Does an independent research artifact unlock specific categories?</p>
+    </div>
+    <div class="item">
+      <div class="item-title">5. Money mechanics</div>
+      <p>Do we likely qualify for need-based aid (FAFSA/CSS)? How do we appeal / negotiate an offer — what actually works? (Watch for scholarship “displacement.”)</p>
+    </div>
+    <div class="item">
+      <div class="item-title">6. Texas angle</div>
+      <p>What UT / Texas-specific merit, state grants, or auto-admission perks should be on our radar?</p>
+    </div>
+
+    <div class="callout">
+      <strong>If short on time — ask only the ⭐ three:</strong> #2 (ROI), #3 (where the money is), #4 (leveraging his profile). Drop #6 — research Texas programs yourself.
+    </div>
+
+    <h3>3 · Close &amp; lock in actions (last 5 min)</h3>
+    <div class="item">
+      <ol>
+        <li><strong>“What are the top 3 things to do in the next 30 days?”</strong></li>
+        <li><strong>“Biggest mistake families make that costs them money?”</strong></li>
+        <li>Confirm a follow-up summary + schedule the next check-in.</li>
+      </ol>
+    </div>
+
+    <h3>📝 Takeaways from the session</h3>
+    <p class="tab-meta">Jot the counselor’s answers here — saved on this device.</p>
+    <textarea class="note-box" data-key="scholarship-takeaways" placeholder="Top 3 next actions, schools/programs they named, deadlines, negotiation tips, follow-up date..."></textarea>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goTab(8)">← Around the Country</button>
+    <button class="nav-btn next" onclick="goTab(1)">↺ Back to Do Now</button>
+  </div>
+</div>
 
 <!-- WHY THIS PLAN — collapsible reference (was Tab 0, moved here v2.5) -->
 <details class="why-reference">
@@ -1852,6 +1931,13 @@
 
   // ===== Version / Changelog =====
   const CHANGELOG = [
+    {
+      version: 'v2.6',
+      date: 'June 15, 2026',
+      changes: [
+        '🎓 <strong>Added a Scholarships tab (Tab 9).</strong> Holds the prep for the Bright Horizons College Coach “Successful Scholarship Strategies” 1:1 — a 45-minute session plan (open with context → six core questions, three starred as highest-value → close with action items) plus a notes box to capture the counselor’s takeaways on the day.'
+      ]
+    },
     {
       version: 'v2.5',
       date: 'June 3, 2026',
